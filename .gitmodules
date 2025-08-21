@@ -7,3 +7,15 @@
 [submodule "projects/microservice-deployment-pipeline"]
 	path = projects/microservice-deployment-pipeline
 	url = https://github.com/eduardogallifaochoa/microservice-deployment-pipeline.git
+[submodule "projects/analytics_rest_api"]
+	path = projects/analytics_rest_api
+	url = https://github.com/eduardogallifaochoa/analytics_rest_api.git
+[submodule "projects/ai-trading-bot"]
+	path = projects/ai-trading-bot
+	url = https://github.com/eduardogallifaochoa/ai-trading-bot.git
+[submodule "projects/price_monitoring_tool"]
+	path = projects/price_monitoring_tool
+	url = https://github.com/eduardogallifaochoa/price_monitoring_tool.git
+[submodule "projects/saucedemo_automation"]
+	path = projects/saucedemo_automation
+	url = https://github.com/eduardogallifaochoa/saucedemo_automation.git
