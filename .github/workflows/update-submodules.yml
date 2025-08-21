@@ -1,0 +1,21 @@
+name: Weekly submodule bump
+on:
+  schedule:
+    - cron: "0 9 * * 1"   # lunes 09:00 America/Monterrey aprox
+  workflow_dispatch:
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Update to latest remote
+        run: |
+          git submodule update --init --remote --merge
+          git add .
+          git -c user.name="Eddie Bot" -c user.email="actions@github" commit -m "chore: bump submodules" || echo "no changes"
+      - uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
