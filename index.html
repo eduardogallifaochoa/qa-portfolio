@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -8,33 +9,130 @@
   <meta name="color-scheme" content="light dark">
   <style>
     /* Base (light) */
-    :root { --link:#0366d6; }
-    body { font-family: system-ui, Arial; margin: 28px; line-height: 1.45; background:#fafafa; }
-    header, .grid, footer { max-width: 980px; margin: 0 auto; }
-    header { margin-bottom: 24px; display:flex; flex-direction:column; gap:8px; }
-    h1 { display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
-    .navlink { font-size:16px; }
-    .grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-    .card { border: 1px solid #eaeaea; border-radius: 14px; padding: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.06); background: #fff; }
-    .card h3 { margin: 0 0 8px; font-size: 18px; }
-    .card p { margin: 6px 0 12px; }
-    .badges { font-size: 12px; margin-bottom: 10px; }
-    .badge { border: 1px solid #ddd; border-radius: 999px; padding: 2px 8px; display: inline-block; margin-right: 6px; }
-    img.thumb { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; background: #f7f7f7; }
-    a { text-decoration: none; color: var(--link); }
-    footer { margin: 20px auto 0; font-size: 14px; color: #666; }
+    :root {
+      --link: #0366d6;
+    }
+
+    body {
+      font-family: system-ui, Arial;
+      margin: 28px;
+      line-height: 1.45;
+      background: #fafafa;
+    }
+
+    header,
+    .grid,
+    footer {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    h1 {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .navlink {
+      font-size: 16px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .card {
+      border: 1px solid #eaeaea;
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
+      background: #fff;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 6px 0 12px;
+    }
+
+    .badges {
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      padding: 2px 8px;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    img.thumb {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #f7f7f7;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--link);
+    }
+
+    footer {
+      margin: 20px auto 0;
+      font-size: 14px;
+      color: #666;
+    }
 
     /* Dark mode */
     @media (prefers-color-scheme: dark) {
-      :root { --link:#60a5fa; }
-      body { background:#0f1117; color:#e5e7eb; }
-      .card { background:#111827; border-color:#1f2937; box-shadow:none; }
-      .badge { border-color:#374151; color:#e5e7eb; }
-      img.thumb { background:#0b0f1a; }
-      footer { color:#9ca3af; }
+      :root {
+        --link: #60a5fa;
+      }
+
+      body {
+        background: #0f1117;
+        color: #e5e7eb;
+      }
+
+      .card {
+        background: #111827;
+        border-color: #1f2937;
+        box-shadow: none;
+      }
+
+      .badge {
+        border-color: #374151;
+        color: #e5e7eb;
+      }
+
+      img.thumb {
+        background: #0b0f1a;
+      }
+
+      footer {
+        color: #9ca3af;
+      }
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1>
@@ -54,9 +152,9 @@
         <span class="badge">CI</span>
       </div>
       <p>Static web + FastAPI for realistic login and contact flows with cross-browser E2E.</p>
-      <img class="thumb" loading="lazy" decoding="async"
-           src="assets/qa-automation-site.png" alt="QA Automation Site report"
-           onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
+      <img class="thumb" loading="lazy" decoding="async" src="assets/qa-automation-site.png"
+        alt="QA Automation Site report"
+        onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
       <p><a href="https://github.com/eduardogallifaochoa/qa-automation-site">Repository</a></p>
     </article>
 
@@ -68,23 +166,23 @@
         <span class="badge">CLI</span>
       </div>
       <p>AI helper to speed up QA tasks and generate insights. Modular services and prompt design.</p>
-      <img class="thumb" loading="lazy" decoding="async"
-           src="assets/ai-assistant-bot.png" alt="AI Assistant Bot"
-           onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
+      <img class="thumb" loading="lazy" decoding="async" src="assets/ai-assistant-bot.png" alt="AI Assistant Bot"
+        onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
       <p><a href="https://github.com/eduardogallifaochoa/ai-assistant-bot">Repository</a></p>
     </article>
 
     <article class="card">
-      <h3><a href="https://github.com/eduardogallifaochoa/microservice-deployment-pipeline">Microservice Pipeline</a></h3>
+      <h3><a href="https://github.com/eduardogallifaochoa/microservice-deployment-pipeline">Microservice Pipeline</a>
+      </h3>
       <div class="badges">
         <span class="badge">FastAPI</span>
         <span class="badge">Docker</span>
         <span class="badge">CI/CD</span>
       </div>
       <p>Dockerized services with GitHub Actions and release artifacts.</p>
-      <img class="thumb" loading="lazy" decoding="async"
-           src="assets/microservice-pipeline.png" alt="Microservice Pipeline"
-           onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
+      <img class="thumb" loading="lazy" decoding="async" src="assets/microservice-pipeline.png"
+        alt="Microservice Pipeline"
+        onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
       <p><a href="https://github.com/eduardogallifaochoa/microservice-deployment-pipeline">Repository</a></p>
     </article>
 
@@ -96,9 +194,9 @@
         <span class="badge">Docker</span>
       </div>
       <p>BTC/ETH tracker with alerts, logs and scheduled summaries.</p>
-      <img class="thumb" loading="lazy" decoding="async"
-           src="assets/price_monitoring_tool.png" alt="Price Monitoring Tool"
-           onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
+      <img class="thumb" loading="lazy" decoding="async" src="assets/price_monitoring_tool.png"
+        alt="Price Monitoring Tool"
+        onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
       <p><a href="https://github.com/eduardogallifaochoa/price_monitoring_tool">Repository</a></p>
     </article>
 
@@ -110,9 +208,8 @@
         <span class="badge">Binance</span>
       </div>
       <p>Modular bot with market data, summaries and CI.</p>
-      <img class="thumb" loading="lazy" decoding="async"
-           src="assets/ai-trading-bot.png" alt="AI Trading Bot"
-           onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
+      <img class="thumb" loading="lazy" decoding="async" src="assets/ai-trading-bot.png" alt="AI Trading Bot"
+        onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
       <p><a href="https://github.com/eduardogallifaochoa/ai-trading-bot">Repository</a></p>
     </article>
 
@@ -124,9 +221,8 @@
         <span class="badge">CI</span>
       </div>
       <p>REST API with tests, coverage and GitHub Actions.</p>
-      <img class="thumb" loading="lazy" decoding="async"
-           src="assets/analytics_rest_api.png" alt="Analytics REST API"
-           onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
+      <img class="thumb" loading="lazy" decoding="async" src="assets/analytics_rest_api.png" alt="Analytics REST API"
+        onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
       <p><a href="https://github.com/eduardogallifaochoa/analytics_rest_api">Repository</a></p>
     </article>
 
@@ -138,9 +234,9 @@
         <span class="badge">Pytest</span>
       </div>
       <p>UI automation suite for SauceDemo store: login, cart and checkout with clean reports.</p>
-      <img class="thumb" loading="lazy" decoding="async"
-           src="assets/saucedemo_automation.png" alt="SauceDemo Automation"
-           onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
+      <img class="thumb" loading="lazy" decoding="async" src="assets/saucedemo_automation.png"
+        alt="SauceDemo Automation"
+        onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
       <p><a href="https://github.com/eduardogallifaochoa/saucedemo_automation">Repository</a></p>
     </article>
   </section>
@@ -149,4 +245,5 @@
     <p>© Eduardo Gallifa Ochoa · QA Engineer</p>
   </footer>
 </body>
+
 </html>
