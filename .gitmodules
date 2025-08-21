@@ -1,0 +1,9 @@
+[submodule "projects/qa-automation-site"]
+	path = projects/qa-automation-site
+	url = https://github.com/eduardogallifaochoa/qa-automation-site.git
+[submodule "projects/ai-assistant-bot"]
+	path = projects/ai-assistant-bot
+	url = https://github.com/eduardogallifaochoa/ai-assistant-bot.git
+[submodule "projects/microservice-deployment-pipeline"]
+	path = projects/microservice-deployment-pipeline
+	url = https://github.com/eduardogallifaochoa/microservice-deployment-pipeline.git
