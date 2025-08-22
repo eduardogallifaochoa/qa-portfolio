@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Contacto · Eddie</title>
+  <meta name="color-scheme" content="light dark">
+  <style>
+    :root { --link:#0366d6; --muted:#666; --border:#e5e7eb; }
+    body { font-family: system-ui, Arial; margin: 28px; line-height:1.6; max-width: 820px; margin-inline:auto; }
+    a { color: var(--link); text-decoration: none; }
+    .card { border:1px solid var(--border); border-radius: 14px; padding: 18px; background:#fff; }
+    .grid { display:grid; gap:14px; grid-template-columns: 1fr; }
+    .row { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .muted { color: var(--muted); }
+    button { border:1px solid var(--border); border-radius:10px; padding:8px 10px; background:#f8fafc; cursor:pointer; }
+    @media (prefers-color-scheme: dark){
+      :root { --link:#60a5fa; --muted:#9ca3af; --border:#1f2937; }
+      body { background:#0f1117; color:#e5e7eb; }
+      .card { background:#111827; border-color: var(--border); }
+      button { background:#0f172a; border-color: var(--border); color:#e5e7eb; }
+    }
+    h1 { margin: 0 0 10px 0; }
+  </style>
+</head>
+<body>
+  <a href="./">← Back</a>
+  <h1>Contact · Eduardo Gallifa Ochoa</h1>
+  <p class="muted">For recruiters only — reach me via the channels below. Phone is hidden until you click reveal.</p>
+  <div class="card grid">
+    <div class="row"><strong>Email</strong> <span><a id="email" href="#">[reveal]</a> <button data-copy="email">Copy</button></span></div>
+    <div class="row"><strong>Phone</strong> <span><a id="phone" href="#">[reveal]</a> <button data-copy="phone">Copy</button></span></div>
+    <div class="row"><strong>LinkedIn</strong> <span><a href="https://www.linkedin.com/in/eduardogallifaochoa/" target="_blank" rel="noopener">/in/eduardogallifaochoa/ ↗</a></span></div>
+    <div class="row"><strong>GitHub</strong> <span><a href="https://github.com/eduardogallifaochoa" target="_blank" rel="noopener">@eduardogallifaochoa ↗</a></span></div>
+    <div class="row"><strong>CV (PDF)</strong> <span><a href="docs/eddie_cv.pdf" id="cv" target="_blank" rel="noopener">Open CV</a></span></div>
+    <div class="row"><strong>Location</strong> <span>Ciudad Madero, Tamaulipas, MX</span></div>
+  </div>
+
+  <script>
+    const emailPlain = "eduardogallifao@gmail.com";
+    const phonePlain = "+52 833 121 0691";
+
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+
+    email.addEventListener('click', (e)=>{
+      e.preventDefault();
+      email.textContent = emailPlain;
+      email.href = "mailto:" + emailPlain;
+    });
+    phone.addEventListener('click', (e)=>{
+      e.preventDefault();
+      phone.textContent = phonePlain;
+      phone.href = "tel:" + phonePlain.replace(/\s+/g,'');
+    });
+
+    document.querySelectorAll('button[data-copy]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const id = btn.getAttribute('data-copy');
+        const val = id === 'email' ? emailPlain : phonePlain;
+        navigator.clipboard.writeText(val).then(()=>{
+          btn.textContent = "Copied ✓";
+          setTimeout(()=>btn.textContent="Copy", 1200);
+        });
+      });
+    });
+
+    // CV fallback
+    (async () => {
+      const a = document.getElementById('cv');
+      try {
+        const r = await fetch(a.href, { method: 'HEAD', cache: 'no-store' });
+        if (!r.ok) a.href = 'assets/eddie_cv.pdf';
+      } catch {
+        a.href = 'assets/eddie_cv.pdf';
+      }
+    })();
+  </script>
+</body>
+</html>
