@@ -46,17 +46,28 @@
     const params = new URLSearchParams(location.search);
     const repo = params.get('repo'); // owner/name
     const niceTitle = params.get('title') || repo || 'Project Preview';
+    const returnParam = params.get('return'); // opcional: ej. index.html
 
     const $ = (s) => document.querySelector(s);
     $('#title').textContent = niceTitle;
     $('#repoMeta').textContent = repo ? `${repo}` : '';
     $('#openOnGitHub').href = repo ? `https://github.com/${repo}` : '#';
 
-    // Back link: history.back(), fallback a "./"
+    // Back link robusto
     $('#backLink').addEventListener('click', (e) => {
       e.preventDefault();
-      if (history.length > 1) history.back();
-      else location.href = './';
+      if (returnParam) {               // 1) prioriza ?return=
+        location.href = returnParam;
+        return;
+      }
+      // 2) si hay historial del mismo origen, back
+      if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) {
+        history.back();
+        return;
+      }
+      // 3) fallback: directorio donde vive project.html (root del sitio)
+      const baseDir = location.pathname.replace(/\/[^\/]*$/, '/'); // drop filename
+      location.href = baseDir; // ej. https://user.github.io/qa-portfolio/
     });
 
     if (!repo) {
