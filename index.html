@@ -89,7 +89,7 @@
     <h1>
       Eddie · QA Portfolio
       <a class="navlink" href="https://github.com/eduardogallifaochoa/qa-portfolio/tree/main/docs">· Docs ↗</a>
-      <a class="navlink" href="contact.html">· Contact</a>
+      <!-- Contact removed from header -->
       <a class="navlink" id="cvLink" href="docs/eddie_cv.pdf" target="_blank" rel="noopener">· CV</a>
     </h1>
     <p>Manual & Automation Testing. Playwright, Selenium, Pytest, CI/CD, Performance, AI-assisted testing.</p>
@@ -102,11 +102,8 @@
         <span data-slot="role">QA Engineer</span>.
       </p>
       <div class="cta">
-        <a class="btn" href="docs/eddie_cv.pdf" target="_blank" rel="noopener">Download CV</a>
-        <a class="btn outline" id="emailBtn"
-           href="mailto:eduardogallifao@gmail.com?subject=QA%20Engineer%20·%20Opportunity&body=Hi%20Eddie,%0A%0AI%20saw%20your%20portfolio%20and...">
-           Email me
-        </a>
+        <a class="btn" id="heroCvLink" href="docs/eddie_cv.pdf" target="_blank" rel="noopener">Download CV</a>
+        <a class="btn outline" href="contact.html">Contact</a>
       </div>
     </section>
   </header>
@@ -245,11 +242,19 @@
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')) { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); lbImg.removeAttribute('src'); } });
 
-    // CV fallback
+    // CV fallback for header + hero buttons
     (async () => {
-      const a = document.getElementById('cvLink');
-      try { const r = await fetch(a.href, { method: 'HEAD', cache: 'no-store' }); if (!r.ok) a.href = 'assets/eddie_cv.pdf'; }
-      catch { a.href = 'assets/eddie_cv.pdf'; }
+      const anchors = ['cvLink','heroCvLink']
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+      for (const a of anchors) {
+        try {
+          const r = await fetch(a.href, { method: 'HEAD', cache: 'no-store' });
+          if (!r.ok) a.href = 'assets/eddie_cv.pdf';
+        } catch {
+          a.href = 'assets/eddie_cv.pdf';
+        }
+      }
     })();
 
     // Hero tailoring: ?for=Acme&role=SDET
@@ -258,12 +263,6 @@
       const company=qs.get('for'); const role=qs.get('role');
       if(company) document.querySelectorAll('[data-slot="for"]').forEach(n=>n.textContent=company);
       if(role) document.querySelectorAll('[data-slot="role"]').forEach(n=>n.textContent=role);
-      const mail=document.getElementById('emailBtn');
-      if(mail){
-        const subj=`${role||'QA Engineer'} · ${company||'Opportunity'}`;
-        const body=`Hi Eddie,%0A%0AI saw your portfolio (${location.href}) and...`;
-        mail.href=`mailto:eduardogallifao@gmail.com?subject=${encodeURIComponent(subj)}&body=${body}`;
-      }
     })();
   </script>
 </body>
