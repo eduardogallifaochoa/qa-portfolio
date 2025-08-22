@@ -14,7 +14,8 @@ Hi, I’m Eddie. Manual & Automation Testing for Web, API, and Mobile. This repo
 | [Analytics REST API](https://github.com/eduardogallifaochoa/analytics_rest_api) | FastAPI service with pytest and CI | FastAPI, Pytest, GitHub Actions | Unit tests, coverage, releases |
 
 ## Live Landing
-The portfolio landing is published with GitHub Pages for quick navigation and screenshots.
+The portfolio landing is published with GitHub Pages for quick navigation and screenshots.  
+**URL:** https://eduardogallifaochoa.github.io/qa-portfolio/
 
 ## Stack
 Python, SQL, HTML/CSS/JS  
@@ -28,6 +29,14 @@ Screenshots live in `assets/`. Each project has one representative image in the 
 ## Why this portfolio
 End-to-end mindset. I pick realistic targets, write resilient tests, automate CI, and ship readable reports fast.
 
+## Contact
+- **Email:** [eduardogallifao@gmail.com](mailto:eduardogallifao@gmail.com)  
+- **LinkedIn:** [/in/eduardogallifaochoa/](https://www.linkedin.com/in/eduardogallifaochoa/)  
+- **GitHub Pages (landing):** https://eduardogallifaochoa.github.io/qa-portfolio/  
+- **CV (PDF):** [docs/eddie_cv.pdf](docs/eddie_cv.pdf)
+
+> I check email **daily** and typically reply within **24 hours**. Prefer email or LinkedIn for first contact. Phone available upon request.
+
 ## Maintenance
 - Update submodules: `git submodule update --remote --merge` then commit.
 - Add a new project: add link here, drop one image in `assets/`, and add a card to `index.html`.
@@ -36,4 +45,3 @@ End-to-end mindset. I pick realistic targets, write resilient tests, automate CI
 1) Add a row to the table  
 2) Drop a screenshot in `assets/`  
 3) Add a card in `index.html`
-
