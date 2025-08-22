@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
@@ -39,35 +39,29 @@
   </header>
 
   <main class="card">
-    <div id="content">Cargando README…</div>
+    <div id="content">Loading README…</div>
   </main>
 
   <script>
     const params = new URLSearchParams(location.search);
     const repo = params.get('repo'); // owner/name
     const niceTitle = params.get('title') || repo || 'Project Preview';
-    const returnParam = params.get('return'); // opcional: ej. index.html
+    const returnParam = params.get('return'); // e.g. index.html
 
     const $ = (s) => document.querySelector(s);
     $('#title').textContent = niceTitle;
     $('#repoMeta').textContent = repo ? `${repo}` : '';
     $('#openOnGitHub').href = repo ? `https://github.com/${repo}` : '#';
 
-    // Back link robusto
+    // Back link (prioritize ?return=, then history, then site root)
     $('#backLink').addEventListener('click', (e) => {
       e.preventDefault();
-      if (returnParam) {               // 1) prioriza ?return=
-        location.href = returnParam;
-        return;
-      }
-      // 2) si hay historial del mismo origen, back
+      if (returnParam) { location.href = returnParam; return; }
       if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) {
-        history.back();
-        return;
+        history.back(); return;
       }
-      // 3) fallback: directorio donde vive project.html (root del sitio)
-      const baseDir = location.pathname.replace(/\/[^\/]*$/, '/'); // drop filename
-      location.href = baseDir; // ej. https://user.github.io/qa-portfolio/
+      const baseDir = location.pathname.replace(/\/[^\/]*$/, '/');
+      location.href = baseDir;
     });
 
     if (!repo) {
@@ -75,7 +69,6 @@
       throw new Error('Missing repo param');
     }
 
-    // Try GitHub API for default branch, but don't depend on it.
     async function getDefaultBranch(ownerRepo) {
       const api = `https://api.github.com/repos/${ownerRepo}`;
       const r = await fetch(api, { headers: { 'Accept': 'application/vnd.github+json' }});
@@ -95,14 +88,12 @@
     }
 
     function absolutizeLinks(container, baseRaw, baseBlob) {
-      // images -> raw
       container.querySelectorAll('img').forEach(img => {
         const src = img.getAttribute('src') || '';
         if (!/^https?:\/\//i.test(src) && !src.startsWith('data:') && !src.startsWith('#')) {
           img.src = baseRaw + src.replace(/^\.\//, '');
         }
       });
-      // anchors -> blob (navegable en GitHub)
       container.querySelectorAll('a').forEach(a => {
         const href = a.getAttribute('href') || '';
         if (!/^https?:\/\//i.test(href) && !href.startsWith('#') && !href.startsWith('mailto:')) {
@@ -120,7 +111,7 @@
       absolutizeLinks(el, baseRaw, baseBlob);
       $('#content').innerHTML = '';
       $('#content').appendChild(el);
-      // Mostrar rama activa
+
       const span = document.createElement('span');
       span.className = 'muted';
       span.style.marginLeft = '8px';
@@ -131,7 +122,7 @@
     (async () => {
       const fallbackBranches = ['main', 'master', 'dev', 'gh-pages'];
       let branchFromAPI = null;
-      try { branchFromAPI = await getDefaultBranch(repo); } catch { /* ignore */ }
+      try { branchFromAPI = await getDefaultBranch(repo); } catch {}
 
       const branches = branchFromAPI
         ? [branchFromAPI, ...fallbackBranches.filter(b => b !== branchFromAPI)]
@@ -146,9 +137,7 @@
           const md = await fetchFirstOK(filenames.map(fn => baseRaw + fn));
           renderReadme(md, baseRaw, baseBlob, b);
           return;
-        } catch (e) {
-          // try next branch
-        }
+        } catch {}
       }
 
       $('#content').innerHTML = `

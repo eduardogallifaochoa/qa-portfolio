@@ -28,14 +28,21 @@
     header { margin-bottom: 24px; display:flex; flex-direction:column; gap:8px; }
     h1 { display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
     .navlink { font-size:16px; }
+    a { text-decoration:none; color:var(--link); }
+
+    /* Hero (living cover letter) */
+    .hero{border:1px solid var(--border);border-radius:14px;padding:14px;background:#fff}
+    .hero #pitch{margin:0}
+    .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    .btn{padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:#111827;color:#fff}
+    .btn.outline{background:transparent;color:var(--link)}
+
     .grid { display:grid; gap:18px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
     .card { border:1px solid var(--border); border-radius:14px; padding:16px; box-shadow:0 8px 24px rgba(0,0,0,.06); background:#fff; }
     .card h3 { margin:0 0 8px; font-size:18px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
     .card p { margin:6px 0 12px; }
-    /* badges with consistent spacing */
     .badges { display:flex; gap:6px; flex-wrap:wrap; font-size:12px; margin-bottom:10px; }
     .badge { border:1px solid #ddd; border-radius:999px; padding:2px 8px; display:inline-flex; align-items:center; }
-    a { text-decoration:none; color:var(--link); }
 
     /* Pill "Preview" next to title */
     .pill {
@@ -62,9 +69,11 @@
     @media (prefers-color-scheme: dark) {
       :root { --link:#60a5fa; --border:#1f2937; --pill-bg:#0f172a; --muted:#9ca3af; }
       body { background:#0f1117; color:#e5e7eb; }
-      .card { background:#111827; border-color:var(--border); box-shadow:none; }
+      .card, .hero { background:#111827; border-color:var(--border); box-shadow:none; }
       .badge { border-color:#374151; color:#e5e7eb; }
       img.thumb { background:#0b0f1a; }
+      .btn{background:#1f2937;border-color:#374151}
+      .btn.outline{color:#60a5fa}
       footer { color:var(--muted); }
     }
 
@@ -96,6 +105,22 @@
       <a class="navlink" id="cvLink" href="docs/eddie_cv.pdf" target="_blank" rel="noopener">· CV</a>
     </h1>
     <p>Manual & Automation Testing. Playwright, Selenium, Pytest, CI/CD, Performance, AI-assisted testing.</p>
+
+    <!-- HERO (living cover letter) -->
+    <section class="hero">
+      <p id="pitch">
+        Hi! I’m Eddie — QA Engineer focused on reliable E2E, CI, and clean reports.
+        I’d love to help <span data-slot="for">your team</span> as a
+        <span data-slot="role">QA Engineer</span>.
+      </p>
+      <div class="cta">
+        <a class="btn" href="docs/eddie_cv.pdf" target="_blank" rel="noopener">Download CV</a>
+        <a class="btn outline" id="emailBtn"
+           href="mailto:eduardogallifao@gmail.com?subject=QA%20Engineer%20·%20Opportunity&body=Hi%20Eddie,%0A%0AI%20saw%20your%20portfolio%20and...">
+           Email me
+        </a>
+      </div>
+    </section>
   </header>
 
   <section class="grid">
@@ -118,9 +143,7 @@
       <img class="thumb" loading="lazy" decoding="async"
            src="assets/qa-automation-site.png" alt="QA Automation Site"
            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
-      <p>
-        <a href="https://github.com/eduardogallifaochoa/qa-automation-site" target="_blank" rel="noopener">Repository ↗</a>
-      </p>
+      <p><a href="https://github.com/eduardogallifaochoa/qa-automation-site" target="_blank" rel="noopener">Repository ↗</a></p>
     </article>
 
     <!-- AI Assistant Bot -->
@@ -141,9 +164,7 @@
       <img class="thumb" loading="lazy" decoding="async"
            src="assets/ai-assistant-bot.png" alt="AI Assistant Bot"
            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
-      <p>
-        <a href="https://github.com/eduardogallifaochoa/ai-assistant-bot" target="_blank" rel="noopener">Repository ↗</a>
-      </p>
+      <p><a href="https://github.com/eduardogallifaochoa/ai-assistant-bot" target="_blank" rel="noopener">Repository ↗</a></p>
     </article>
 
     <!-- Microservice Pipeline -->
@@ -164,9 +185,7 @@
       <img class="thumb" loading="lazy" decoding="async"
            src="assets/microservice-pipeline.png" alt="Microservice Pipeline"
            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
-      <p>
-        <a href="https://github.com/eduardogallifaochoa/microservice-deployment-pipeline" target="_blank" rel="noopener">Repository ↗</a>
-      </p>
+      <p><a href="https://github.com/eduardogallifaochoa/microservice-deployment-pipeline" target="_blank" rel="noopener">Repository ↗</a></p>
     </article>
 
     <!-- Price Monitoring Tool -->
@@ -187,9 +206,7 @@
       <img class="thumb" loading="lazy" decoding="async"
            src="assets/price_monitoring_tool.png" alt="Price Monitoring Tool"
            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
-      <p>
-        <a href="https://github.com/eduardogallifaochoa/price_monitoring_tool" target="_blank" rel="noopener">Repository ↗</a>
-      </p>
+      <p><a href="https://github.com/eduardogallifaochoa/price_monitoring_tool" target="_blank" rel="noopener">Repository ↗</a></p>
     </article>
 
     <!-- AI Trading Bot -->
@@ -201,116 +218,4 @@
           Preview
         </a>
       </h3>
-      <div class="badges">
-        <span class="badge">Python</span>
-        <span class="badge">OpenAI</span>
-        <span class="badge">Binance</span>
-      </div>
-      <p>Modular bot with market data, summaries, and CI.</p>
-      <img class="thumb" loading="lazy" decoding="async"
-           src="assets/ai-trading-bot.png" alt="AI Trading Bot"
-           onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
-      <p>
-        <a href="https://github.com/eduardogallifaochoa/ai-trading-bot" target="_blank" rel="noopener">Repository ↗</a>
-      </p>
-    </article>
-
-    <!-- Analytics REST API -->
-    <article class="card">
-      <h3>
-        <a href="project.html?repo=eduardogallifaochoa/analytics_rest_api&title=Analytics%20REST%20API&return=index.html">Analytics REST API</a>
-        <a class="pill" href="project.html?repo=eduardogallifaochoa/analytics_rest_api&title=Analytics%20REST%20API&return=index.html" aria-label="Preview">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 .001-10.001A5 5 0 0 1 12 17z"/><circle cx="12" cy="12" r="2.5"/></svg>
-          Preview
-        </a>
-      </h3>
-      <div class="badges">
-        <span class="badge">FastAPI</span>
-        <span class="badge">Pytest</span>
-        <span class="badge">CI</span>
-      </div>
-      <p>REST API with tests, coverage and GitHub Actions.</p>
-      <img class="thumb" loading="lazy" decoding="async"
-           src="assets/analytics_rest_api.png" alt="Analytics REST API"
-           onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
-      <p>
-        <a href="https://github.com/eduardogallifaochoa/analytics_rest_api" target="_blank" rel="noopener">Repository ↗</a>
-      </p>
-    </article>
-
-    <!-- SauceDemo Automation -->
-    <article class="card">
-      <h3>
-        <a href="project.html?repo=eduardogallifaochoa/saucedemo_automation&title=SauceDemo%20Automation&return=index.html">SauceDemo Automation</a>
-        <a class="pill" href="project.html?repo=eduardogallifaochoa/saucedemo_automation&title=SauceDemo%20Automation&return=index.html" aria-label="Preview">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 .001-10.001A5 5 0 0 1 12 17z"/><circle cx="12" cy="12" r="2.5"/></svg>
-          Preview
-        </a>
-      </h3>
-      <div class="badges">
-        <span class="badge">Python</span>
-        <span class="badge">Selenium</span>
-        <span class="badge">Pytest</span>
-      </div>
-      <p>UI automation suite for login, cart and checkout with clean test reports.</p>
-      <img class="thumb" loading="lazy" decoding="async"
-           src="assets/saucedemo_automation.png" alt="SauceDemo Automation"
-           onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
-      <p>
-        <a href="https://github.com/eduardogallifaochoa/saucedemo_automation" target="_blank" rel="noopener">Repository ↗</a>
-      </p>
-    </article>
-  </section>
-
-  <!-- Lightbox (modal) -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="close" id="closeLightbox" aria-label="Close (Esc)">✕</button>
-    <img id="lightboxImg" alt="Preview">
-  </div>
-
-  <footer>
-    <p>© Eduardo Gallifa Ochoa · QA Engineer</p>
-  </footer>
-
-  <script>
-    // Simple lightbox
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightboxImg');
-    const closeBtn = document.getElementById('closeLightbox');
-
-    document.addEventListener('click', (e) => {
-      const img = e.target.closest('img.thumb');
-      if (img) {
-        e.preventDefault();
-        lbImg.src = img.currentSrc || img.src;
-        lb.classList.add('open');
-        lb.setAttribute('aria-hidden', 'false');
-      }
-      if (e.target === lb || e.target === closeBtn) {
-        lb.classList.remove('open');
-        lb.setAttribute('aria-hidden', 'true');
-        lbImg.removeAttribute('src');
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lb.classList.contains('open')) {
-        lb.classList.remove('open');
-        lb.setAttribute('aria-hidden', 'true');
-        lbImg.removeAttribute('src');
-      }
-    });
-
-    // CV fallback: if docs/eddie_cv.pdf doesn't exist, use assets/eddie_cv.pdf
-    (async () => {
-      const a = document.getElementById('cvLink');
-      try {
-        const r = await fetch(a.href, { method: 'HEAD', cache: 'no-store' });
-        if (!r.ok) a.href = 'assets/eddie_cv.pdf';
-      } catch {
-        a.href = 'assets/eddie_cv.pdf';
-      }
-    })();
-  </script>
-</body>
-</html>
+      <d
