@@ -6,19 +6,20 @@
   <title>Project · Preview</title>
   <meta name="color-scheme" content="light dark" />
   <style>
-    :root { --link:#0366d6; --border:#e5e7eb; --bg:#fff; --fg:#111827; }
+    :root { --link:#0366d6; --border:#e5e7eb; --bg:#fff; --fg:#111827; --muted:#6b7280; }
+    * { box-sizing:border-box; }
     body { font-family: system-ui, Arial; margin: 24px; line-height:1.55; background:#fafafa; color:var(--fg); }
     header, main { max-width: 980px; margin: 0 auto; }
-    header { display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom: 14px; }
-    a { color: var(--link); text-decoration: none; }
-    .muted { color:#6b7280; font-size:14px; }
+    header { display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom: 14px; }
+    h1 { margin:0; font-size: 22px; }
+    nav a { color: var(--link); text-decoration: none; margin-left: 8px; }
+    .muted { color:var(--muted); font-size:14px; }
     .card { border:1px solid var(--border); border-radius:14px; padding:18px; background:var(--bg); }
     pre { overflow:auto; background:#0f172a; color:#e5e7eb; padding:14px; border-radius:10px; }
     img { max-width: 100%; height: auto; }
     @media (prefers-color-scheme: dark) {
-      :root { --link:#60a5fa; --border:#1f2937; --bg:#111827; --fg:#e5e7eb; }
+      :root { --link:#60a5fa; --border:#1f2937; --bg:#111827; --fg:#e5e7eb; --muted:#9ca3af; }
       body { background:#0f1117; }
-      .muted { color:#9ca3af; }
     }
   </style>
   <!-- Markdown + Sanitizer -->
@@ -27,8 +28,14 @@
 </head>
 <body>
   <header>
-    <h1 id="title" style="margin:0;">Project Preview</h1>
-    <span class="muted" id="meta"></span>
+    <div>
+      <a href="#" id="backLink" aria-label="Back">← Back</a>
+      <h1 id="title" style="display:inline-block; margin-left:8px;">Project Preview</h1>
+      <span id="repoMeta" class="muted" style="margin-left:8px;"></span>
+    </div>
+    <nav id="navRight">
+      <a id="openOnGitHub" href="#" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
   </header>
 
   <main class="card">
@@ -36,23 +43,28 @@
   </main>
 
   <script>
-    // --- Helpers ---
-    const $ = (sel) => document.querySelector(sel);
     const params = new URLSearchParams(location.search);
-    const repo = params.get('repo');            // e.g. "owner/name"
+    const repo = params.get('repo'); // owner/name
     const niceTitle = params.get('title') || repo || 'Project Preview';
 
+    const $ = (s) => document.querySelector(s);
     $('#title').textContent = niceTitle;
-    $('#meta').innerHTML = repo
-      ? `<a href="https://github.com/${repo}" target="_blank" rel="noopener">GitHub ↗</a>`
-      : '';
+    $('#repoMeta').textContent = repo ? `${repo}` : '';
+    $('#openOnGitHub').href = repo ? `https://github.com/${repo}` : '#';
+
+    // Back link: history.back(), fallback a "./"
+    $('#backLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      if (history.length > 1) history.back();
+      else location.href = './';
+    });
 
     if (!repo) {
       $('#content').textContent = 'Missing ?repo=:owner/:name';
       throw new Error('Missing repo param');
     }
 
-    // Detect default branch from GitHub API (unauthenticated; 60 req/h IP limit)
+    // Try GitHub API for default branch, but don't depend on it.
     async function getDefaultBranch(ownerRepo) {
       const api = `https://api.github.com/repos/${ownerRepo}`;
       const r = await fetch(api, { headers: { 'Accept': 'application/vnd.github+json' }});
@@ -61,7 +73,6 @@
       return j.default_branch || 'main';
     }
 
-    // Try a list of README candidates
     async function fetchFirstOK(urls) {
       for (const u of urls) {
         try {
@@ -69,53 +80,72 @@
           if (r.ok) return await r.text();
         } catch {}
       }
-      throw new Error('All README candidates failed');
+      throw new Error('All candidates failed');
     }
 
-    function absolutizeLinks(container, baseRaw) {
-      // Fix relative <img src> and <a href>
+    function absolutizeLinks(container, baseRaw, baseBlob) {
+      // images -> raw
       container.querySelectorAll('img').forEach(img => {
         const src = img.getAttribute('src') || '';
         if (!/^https?:\/\//i.test(src) && !src.startsWith('data:') && !src.startsWith('#')) {
           img.src = baseRaw + src.replace(/^\.\//, '');
         }
       });
+      // anchors -> blob (navegable en GitHub)
       container.querySelectorAll('a').forEach(a => {
         const href = a.getAttribute('href') || '';
         if (!/^https?:\/\//i.test(href) && !href.startsWith('#') && !href.startsWith('mailto:')) {
-          a.href = baseRaw + href.replace(/^\.\//, '');
+          a.href = baseBlob + href.replace(/^\.\//, '');
+          a.setAttribute('target', '_blank');
+          a.setAttribute('rel', 'noopener');
         }
       });
     }
 
+    function renderReadme(md, baseRaw, baseBlob, branch) {
+      const html = DOMPurify.sanitize(marked.parse(md));
+      const el = document.createElement('div');
+      el.innerHTML = html;
+      absolutizeLinks(el, baseRaw, baseBlob);
+      $('#content').innerHTML = '';
+      $('#content').appendChild(el);
+      // Mostrar rama activa
+      const span = document.createElement('span');
+      span.className = 'muted';
+      span.style.marginLeft = '8px';
+      span.textContent = `· branch: ${branch}`;
+      $('#repoMeta').appendChild(span);
+    }
+
     (async () => {
-      try {
-        const branch = await getDefaultBranch(repo); // handles master/main automatically
-        const base = `https://raw.githubusercontent.com/${repo}/${branch}/`;
-        const candidates = [
-          base + 'README.md',
-          base + 'readme.md',
-          base + 'README.MD',
-          base + 'README.rst',
-          base + 'docs/README.md',
-        ];
+      const fallbackBranches = ['main', 'master', 'dev', 'gh-pages'];
+      let branchFromAPI = null;
+      try { branchFromAPI = await getDefaultBranch(repo); } catch { /* ignore */ }
 
-        const md = await fetchFirstOK(candidates);
-        // Render markdown -> HTML (sanitized)
-        const html = DOMPurify.sanitize(marked.parse(md));
-        $('#content').innerHTML = html;
+      const branches = branchFromAPI
+        ? [branchFromAPI, ...fallbackBranches.filter(b => b !== branchFromAPI)]
+        : fallbackBranches;
 
-        // Fix relative assets (images/links) to point at raw base
-        absolutizeLinks($('#content'), base);
+      const filenames = ['README.md','readme.md','README.MD','README.rst','docs/README.md','Readme.md','README.txt'];
 
-      } catch (err) {
-        console.error(err);
-        $('#content').innerHTML = `
-          <p><strong>Failed to load README</strong></p>
-          <p class="muted">${err.message}</p>
-          <p class="muted">Tried: README.md, readme.md, README.MD, README.rst, docs/README.md</p>
-        `;
+      for (const b of branches) {
+        const baseRaw  = `https://raw.githubusercontent.com/${repo}/${b}/`;
+        const baseBlob = `https://github.com/${repo}/blob/${b}/`;
+        try {
+          const md = await fetchFirstOK(filenames.map(fn => baseRaw + fn));
+          renderReadme(md, baseRaw, baseBlob, b);
+          return;
+        } catch (e) {
+          // try next branch
+        }
       }
+
+      $('#content').innerHTML = `
+        <p><strong>Failed to load README</strong></p>
+        <p class="muted">Tried branches: ${branches.join(', ')}</p>
+        <p class="muted">Tried filenames: ${filenames.join(', ')}</p>
+        <p><a href="https://github.com/${repo}" target="_blank" rel="noopener">Open on GitHub ↗</a></p>
+      `;
     })();
   </script>
 </body>
