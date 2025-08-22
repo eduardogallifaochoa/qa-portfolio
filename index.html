@@ -7,7 +7,7 @@
   <meta name="description" content="Manual & Automation Testing · Playwright · Selenium · Pytest · CI/CD · Performance">
   <meta name="color-scheme" content="light dark">
 
-  <!-- Open Graph / Twitter preview -->
+  <!-- Open Graph / Twitter -->
   <meta property="og:title" content="Eddie · QA Portfolio">
   <meta property="og:description" content="Manual & Automation Testing · Playwright · Selenium · Pytest · CI/CD · Performance">
   <meta property="og:image" content="assets/og-image.png">
@@ -30,7 +30,7 @@
     .navlink { font-size:16px; }
     a { text-decoration:none; color:var(--link); }
 
-    /* Hero (living cover letter) */
+    /* Hero */
     .hero{border:1px solid var(--border);border-radius:14px;padding:14px;background:#fff}
     .hero #pitch{margin:0}
     .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
@@ -44,7 +44,6 @@
     .badges { display:flex; gap:6px; flex-wrap:wrap; font-size:12px; margin-bottom:10px; }
     .badge { border:1px solid #ddd; border-radius:999px; padding:2px 8px; display:inline-flex; align-items:center; }
 
-    /* Pill "Preview" next to title */
     .pill {
       font-size:12px; padding:2px 8px; border-radius:999px;
       border:1px solid var(--border); background: var(--pill-bg);
@@ -52,7 +51,6 @@
     }
     .pill svg { width:12px; height:12px; display:block; }
 
-    /* Thumbnails */
     img.thumb {
       width: 100%;
       aspect-ratio: 16/9;
@@ -77,23 +75,13 @@
       footer { color:var(--muted); }
     }
 
-    /* Lightbox (modal) */
-    .lightbox {
-      position: fixed; inset: 0; background: rgba(0,0,0,.75);
-      display: none; align-items: center; justify-content: center;
-      padding: 24px; z-index: 9999;
-    }
+    /* Lightbox */
+    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.75); display: none;
+      align-items: center; justify-content: center; padding: 24px; z-index: 9999; }
     .lightbox.open { display: flex; }
-    .lightbox img {
-      max-width: min(1200px, 95vw);
-      max-height: 90vh;
-      border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(0,0,0,.5);
-    }
-    .lightbox .close {
-      position:absolute; top:18px; right:18px; background:#111827; color:#e5e7eb;
-      border:1px solid #374151; border-radius:999px; padding:8px 12px; cursor:pointer;
-    }
+    .lightbox img { max-width: min(1200px, 95vw); max-height: 90vh; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,.5); }
+    .lightbox .close { position:absolute; top:18px; right:18px; background:#111827; color:#e5e7eb;
+      border:1px solid #374151; border-radius:999px; padding:8px 12px; cursor:pointer; }
   </style>
 </head>
 <body>
@@ -106,7 +94,7 @@
     </h1>
     <p>Manual & Automation Testing. Playwright, Selenium, Pytest, CI/CD, Performance, AI-assisted testing.</p>
 
-    <!-- HERO (living cover letter) -->
+    <!-- HERO -->
     <section class="hero">
       <p id="pitch">
         Hi! I’m Eddie — QA Engineer focused on reliable E2E, CI, and clean reports.
@@ -124,29 +112,23 @@
   </header>
 
   <section class="grid">
-    <!-- QA Automation Site -->
+    <!-- 1) QA Automation Site -->
     <article class="card">
       <h3>
         <a href="project.html?repo=eduardogallifaochoa/qa-automation-site&title=QA%20Automation%20Site&return=index.html">QA Automation Site</a>
         <a class="pill" href="project.html?repo=eduardogallifaochoa/qa-automation-site&title=QA%20Automation%20Site&return=index.html" aria-label="Preview">
-          <!-- eye icon -->
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 .001-10.001A5 5 0 0 1 12 17z"/><circle cx="12" cy="12" r="2.5"/></svg>
           Preview
         </a>
       </h3>
-      <div class="badges">
-        <span class="badge">Playwright</span>
-        <span class="badge">Pytest</span>
-        <span class="badge">CI</span>
-      </div>
+      <div class="badges"><span class="badge">Playwright</span><span class="badge">Pytest</span><span class="badge">CI</span></div>
       <p>Static web + FastAPI for realistic login/contact flows with cross-browser E2E.</p>
-      <img class="thumb" loading="lazy" decoding="async"
-           src="assets/qa-automation-site.png" alt="QA Automation Site"
+      <img class="thumb" loading="lazy" decoding="async" src="assets/qa-automation-site.png" alt="QA Automation Site"
            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
       <p><a href="https://github.com/eduardogallifaochoa/qa-automation-site" target="_blank" rel="noopener">Repository ↗</a></p>
     </article>
 
-    <!-- AI Assistant Bot -->
+    <!-- 2) AI Assistant Bot -->
     <article class="card">
       <h3>
         <a href="project.html?repo=eduardogallifaochoa/ai-assistant-bot&title=AI%20Assistant%20Bot&return=index.html">AI Assistant Bot</a>
@@ -155,19 +137,14 @@
           Preview
         </a>
       </h3>
-      <div class="badges">
-        <span class="badge">Python</span>
-        <span class="badge">OpenAI</span>
-        <span class="badge">CLI</span>
-      </div>
+      <div class="badges"><span class="badge">Python</span><span class="badge">OpenAI</span><span class="badge">CLI</span></div>
       <p>AI helper to speed up QA tasks and generate insights. Modular services and prompt design.</p>
-      <img class="thumb" loading="lazy" decoding="async"
-           src="assets/ai-assistant-bot.png" alt="AI Assistant Bot"
+      <img class="thumb" loading="lazy" decoding="async" src="assets/ai-assistant-bot.png" alt="AI Assistant Bot"
            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
       <p><a href="https://github.com/eduardogallifaochoa/ai-assistant-bot" target="_blank" rel="noopener">Repository ↗</a></p>
     </article>
 
-    <!-- Microservice Pipeline -->
+    <!-- 3) Microservice Pipeline -->
     <article class="card">
       <h3>
         <a href="project.html?repo=eduardogallifaochoa/microservice-deployment-pipeline&title=Microservice%20Pipeline&return=index.html">Microservice Pipeline</a>
@@ -176,19 +153,14 @@
           Preview
         </a>
       </h3>
-      <div class="badges">
-        <span class="badge">FastAPI</span>
-        <span class="badge">Docker</span>
-        <span class="badge">CI/CD</span>
-      </div>
+      <div class="badges"><span class="badge">FastAPI</span><span class="badge">Docker</span><span class="badge">CI/CD</span></div>
       <p>Dockerized services with GitHub Actions and release artifacts.</p>
-      <img class="thumb" loading="lazy" decoding="async"
-           src="assets/microservice-pipeline.png" alt="Microservice Pipeline"
+      <img class="thumb" loading="lazy" decoding="async" src="assets/microservice-pipeline.png" alt="Microservice Pipeline"
            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
       <p><a href="https://github.com/eduardogallifaochoa/microservice-deployment-pipeline" target="_blank" rel="noopener">Repository ↗</a></p>
     </article>
 
-    <!-- Price Monitoring Tool -->
+    <!-- 4) Price Monitoring Tool -->
     <article class="card">
       <h3>
         <a href="project.html?repo=eduardogallifaochoa/price_monitoring_tool&title=Price%20Monitoring%20Tool&return=index.html">Price Monitoring Tool</a>
@@ -197,19 +169,14 @@
           Preview
         </a>
       </h3>
-      <div class="badges">
-        <span class="badge">Python</span>
-        <span class="badge">SQLite</span>
-        <span class="badge">Docker</span>
-      </div>
+      <div class="badges"><span class="badge">Python</span><span class="badge">SQLite</span><span class="badge">Docker</span></div>
       <p>BTC/ETH tracker with alerts, logs and scheduled summaries.</p>
-      <img class="thumb" loading="lazy" decoding="async"
-           src="assets/price_monitoring_tool.png" alt="Price Monitoring Tool"
+      <img class="thumb" loading="lazy" decoding="async" src="assets/price_monitoring_tool.png" alt="Price Monitoring Tool"
            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
       <p><a href="https://github.com/eduardogallifaochoa/price_monitoring_tool" target="_blank" rel="noopener">Repository ↗</a></p>
     </article>
 
-    <!-- AI Trading Bot -->
+    <!-- 5) AI Trading Bot -->
     <article class="card">
       <h3>
         <a href="project.html?repo=eduardogallifaochoa/ai-trading-bot&title=AI%20Trading%20Bot&return=index.html">AI Trading Bot</a>
@@ -218,4 +185,86 @@
           Preview
         </a>
       </h3>
-      <d
+      <div class="badges"><span class="badge">Python</span><span class="badge">OpenAI</span><span class="badge">Binance</span></div>
+      <p>Modular bot with market data, summaries, and CI.</p>
+      <img class="thumb" loading="lazy" decoding="async" src="assets/ai-trading-bot.png" alt="AI Trading Bot"
+           onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
+      <p><a href="https://github.com/eduardogallifaochoa/ai-trading-bot" target="_blank" rel="noopener">Repository ↗</a></p>
+    </article>
+
+    <!-- 6) Analytics REST API -->
+    <article class="card">
+      <h3>
+        <a href="project.html?repo=eduardogallifaochoa/analytics_rest_api&title=Analytics%20REST%20API&return=index.html">Analytics REST API</a>
+        <a class="pill" href="project.html?repo=eduardogallifaochoa/analytics_rest_api&title=Analytics%20REST%20API&return=index.html" aria-label="Preview">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 .001-10.001A5 5 0 0 1 12 17z"/><circle cx="12" cy="12" r="2.5"/></svg>
+          Preview
+        </a>
+      </h3>
+      <div class="badges"><span class="badge">FastAPI</span><span class="badge">Pytest</span><span class="badge">CI</span></div>
+      <p>REST API with tests, coverage and GitHub Actions.</p>
+      <img class="thumb" loading="lazy" decoding="async" src="assets/analytics_rest_api.png" alt="Analytics REST API"
+           onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
+      <p><a href="https://github.com/eduardogallifaochoa/analytics_rest_api" target="_blank" rel="noopener">Repository ↗</a></p>
+    </article>
+
+    <!-- 7) SauceDemo Automation -->
+    <article class="card">
+      <h3>
+        <a href="project.html?repo=eduardogallifaochoa/saucedemo_automation&title=SauceDemo%20Automation&return=index.html">SauceDemo Automation</a>
+        <a class="pill" href="project.html?repo=eduardogallifaochoa/saucedemo_automation&title=SauceDemo%20Automation&return=index.html" aria-label="Preview">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 .001-10.001A5 5 0 0 1 12 17z"/><circle cx="12" cy="12" r="2.5"/></svg>
+          Preview
+        </a>
+      </h3>
+      <div class="badges"><span class="badge">Python</span><span class="badge">Selenium</span><span class="badge">Pytest</span></div>
+      <p>UI automation suite for login, cart and checkout with clean test reports.</p>
+      <img class="thumb" loading="lazy" decoding="async" src="assets/saucedemo_automation.png" alt="SauceDemo Automation"
+           onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
+      <p><a href="https://github.com/eduardogallifaochoa/saucedemo_automation" target="_blank" rel="noopener">Repository ↗</a></p>
+    </article>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="close" id="closeLightbox" aria-label="Close (Esc)">✕</button>
+    <img id="lightboxImg" alt="Preview">
+  </div>
+
+  <footer><p>© Eduardo Gallifa Ochoa · QA Engineer</p></footer>
+
+  <script>
+    // Lightbox
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    const closeBtn = document.getElementById('closeLightbox');
+    document.addEventListener('click', (e) => {
+      const img = e.target.closest('img.thumb');
+      if (img) { e.preventDefault(); lbImg.src = img.currentSrc || img.src; lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); }
+      if (e.target === lb || e.target === closeBtn) { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); lbImg.removeAttribute('src'); }
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')) { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); lbImg.removeAttribute('src'); } });
+
+    // CV fallback
+    (async () => {
+      const a = document.getElementById('cvLink');
+      try { const r = await fetch(a.href, { method: 'HEAD', cache: 'no-store' }); if (!r.ok) a.href = 'assets/eddie_cv.pdf'; }
+      catch { a.href = 'assets/eddie_cv.pdf'; }
+    })();
+
+    // Hero tailoring: ?for=Acme&role=SDET
+    (()=>{
+      const qs=new URLSearchParams(location.search);
+      const company=qs.get('for'); const role=qs.get('role');
+      if(company) document.querySelectorAll('[data-slot="for"]').forEach(n=>n.textContent=company);
+      if(role) document.querySelectorAll('[data-slot="role"]').forEach(n=>n.textContent=role);
+      const mail=document.getElementById('emailBtn');
+      if(mail){
+        const subj=`${role||'QA Engineer'} · ${company||'Opportunity'}`;
+        const body=`Hi Eddie,%0A%0AI saw your portfolio (${location.href}) and...`;
+        mail.href=`mailto:eduardogallifao@gmail.com?subject=${encodeURIComponent(subj)}&body=${body}`;
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -17,12 +17,8 @@
     .card { border:1px solid var(--border); border-radius:14px; padding:18px; background:var(--bg); }
     pre { overflow:auto; background:#0f172a; color:#e5e7eb; padding:14px; border-radius:10px; }
     img { max-width: 100%; height: auto; }
-    @media (prefers-color-scheme: dark) {
-      :root { --link:#60a5fa; --border:#1f2937; --bg:#111827; --fg:#e5e7eb; --muted:#9ca3af; }
-      body { background:#0f1117; }
-    }
+    @media (prefers-color-scheme: dark) { :root { --link:#60a5fa; --border:#1f2937; --bg:#111827; --fg:#e5e7eb; --muted:#9ca3af; } body { background:#0f1117; } }
   </style>
-  <!-- Markdown + Sanitizer -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
 </head>
@@ -33,27 +29,23 @@
       <h1 id="title" style="display:inline-block; margin-left:8px;">Project Preview</h1>
       <span id="repoMeta" class="muted" style="margin-left:8px;"></span>
     </div>
-    <nav id="navRight">
-      <a id="openOnGitHub" href="#" target="_blank" rel="noopener">GitHub ↗</a>
-    </nav>
+    <nav><a id="openOnGitHub" href="#" target="_blank" rel="noopener">GitHub ↗</a></nav>
   </header>
 
-  <main class="card">
-    <div id="content">Loading README…</div>
-  </main>
+  <main class="card"><div id="content">Loading README…</div></main>
 
   <script>
     const params = new URLSearchParams(location.search);
-    const repo = params.get('repo'); // owner/name
+    const repo = params.get('repo');
     const niceTitle = params.get('title') || repo || 'Project Preview';
-    const returnParam = params.get('return'); // e.g. index.html
+    const returnParam = params.get('return');
 
     const $ = (s) => document.querySelector(s);
     $('#title').textContent = niceTitle;
     $('#repoMeta').textContent = repo ? `${repo}` : '';
     $('#openOnGitHub').href = repo ? `https://github.com/${repo}` : '#';
 
-    // Back link (prioritize ?return=, then history, then site root)
+    // Back link
     $('#backLink').addEventListener('click', (e) => {
       e.preventDefault();
       if (returnParam) { location.href = returnParam; return; }
@@ -64,10 +56,7 @@
       location.href = baseDir;
     });
 
-    if (!repo) {
-      $('#content').textContent = 'Missing ?repo=:owner/:name';
-      throw new Error('Missing repo param');
-    }
+    if (!repo) { $('#content').textContent = 'Missing ?repo=:owner/:name'; throw new Error('Missing repo'); }
 
     async function getDefaultBranch(ownerRepo) {
       const api = `https://api.github.com/repos/${ownerRepo}`;
@@ -76,17 +65,10 @@
       const j = await r.json();
       return j.default_branch || 'main';
     }
-
     async function fetchFirstOK(urls) {
-      for (const u of urls) {
-        try {
-          const r = await fetch(u, { cache: 'no-store' });
-          if (r.ok) return await r.text();
-        } catch {}
-      }
+      for (const u of urls) { try { const r = await fetch(u, { cache: 'no-store' }); if (r.ok) return await r.text(); } catch {} }
       throw new Error('All candidates failed');
     }
-
     function absolutizeLinks(container, baseRaw, baseBlob) {
       container.querySelectorAll('img').forEach(img => {
         const src = img.getAttribute('src') || '';
@@ -98,36 +80,23 @@
         const href = a.getAttribute('href') || '';
         if (!/^https?:\/\//i.test(href) && !href.startsWith('#') && !href.startsWith('mailto:')) {
           a.href = baseBlob + href.replace(/^\.\//, '');
-          a.setAttribute('target', '_blank');
-          a.setAttribute('rel', 'noopener');
+          a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener');
         }
       });
     }
-
     function renderReadme(md, baseRaw, baseBlob, branch) {
       const html = DOMPurify.sanitize(marked.parse(md));
-      const el = document.createElement('div');
-      el.innerHTML = html;
+      const el = document.createElement('div'); el.innerHTML = html;
       absolutizeLinks(el, baseRaw, baseBlob);
-      $('#content').innerHTML = '';
-      $('#content').appendChild(el);
-
-      const span = document.createElement('span');
-      span.className = 'muted';
-      span.style.marginLeft = '8px';
-      span.textContent = `· branch: ${branch}`;
+      $('#content').innerHTML = ''; $('#content').appendChild(el);
+      const span = document.createElement('span'); span.className = 'muted'; span.style.marginLeft = '8px'; span.textContent = `· branch: ${branch}`;
       $('#repoMeta').appendChild(span);
     }
 
     (async () => {
       const fallbackBranches = ['main', 'master', 'dev', 'gh-pages'];
-      let branchFromAPI = null;
-      try { branchFromAPI = await getDefaultBranch(repo); } catch {}
-
-      const branches = branchFromAPI
-        ? [branchFromAPI, ...fallbackBranches.filter(b => b !== branchFromAPI)]
-        : fallbackBranches;
-
+      let branchFromAPI = null; try { branchFromAPI = await getDefaultBranch(repo); } catch {}
+      const branches = branchFromAPI ? [branchFromAPI, ...fallbackBranches.filter(b => b !== branchFromAPI)] : fallbackBranches;
       const filenames = ['README.md','readme.md','README.MD','README.rst','docs/README.md','Readme.md','README.txt'];
 
       for (const b of branches) {
@@ -139,7 +108,6 @@
           return;
         } catch {}
       }
-
       $('#content').innerHTML = `
         <p><strong>Failed to load README</strong></p>
         <p class="muted">Tried branches: ${branches.join(', ')}</p>
