@@ -21,7 +21,7 @@
   <meta name="theme-color" content="#0f1117">
 
   <style>
-    :root { --link:#0366d6; }
+    :root { --link:#0366d6; --border:#eaeaea; --pill-bg:#f8fafc; --muted:#666; }
     * { box-sizing: border-box; }
     body { font-family: system-ui, Arial; margin: 28px; line-height: 1.45; background:#fafafa; }
     header, .grid, footer { max-width: 980px; margin: 0 auto; }
@@ -29,12 +29,20 @@
     h1 { display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
     .navlink { font-size:16px; }
     .grid { display:grid; gap:18px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-    .card { border:1px solid #eaeaea; border-radius:14px; padding:16px; box-shadow:0 8px 24px rgba(0,0,0,.06); background:#fff; }
-    .card h3 { margin:0 0 8px; font-size:18px; }
+    .card { border:1px solid var(--border); border-radius:14px; padding:16px; box-shadow:0 8px 24px rgba(0,0,0,.06); background:#fff; }
+    .card h3 { margin:0 0 8px; font-size:18px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
     .card p { margin:6px 0 12px; }
     .badges { font-size:12px; margin-bottom:10px; }
     .badge { border:1px solid #ddd; border-radius:999px; padding:2px 8px; display:inline-block; margin-right:6px; }
     a { text-decoration:none; color:var(--link); }
+
+    /* Pill "Preview" junto al título */
+    .pill {
+      font-size:12px; padding:2px 8px; border-radius:999px;
+      border:1px solid var(--border); background: var(--pill-bg);
+      line-height:1; display:inline-flex; align-items:center; gap:6px;
+    }
+    .pill svg { width:12px; height:12px; display:block; }
 
     /* Thumbnails uniformes */
     img.thumb {
@@ -48,15 +56,15 @@
       cursor: zoom-in;
     }
 
-    footer { margin:20px auto 0; font-size:14px; color:#666; }
+    footer { margin:20px auto 0; font-size:14px; color:var(--muted); }
 
     @media (prefers-color-scheme: dark) {
-      :root { --link:#60a5fa; }
+      :root { --link:#60a5fa; --border:#1f2937; --pill-bg:#0f172a; --muted:#9ca3af; }
       body { background:#0f1117; color:#e5e7eb; }
-      .card { background:#111827; border-color:#1f2937; box-shadow:none; }
+      .card { background:#111827; border-color:var(--border); box-shadow:none; }
       .badge { border-color:#374151; color:#e5e7eb; }
       img.thumb { background:#0b0f1a; }
-      footer { color:#9ca3af; }
+      footer { color:var(--muted); }
     }
 
     /* Visor (modal) */
@@ -92,7 +100,14 @@
   <section class="grid">
     <!-- QA Automation Site -->
     <article class="card">
-      <h3><a href="project.html?repo=eduardogallifaochoa/qa-automation-site&title=QA%20Automation%20Site">QA Automation Site</a></h3>
+      <h3>
+        <a href="project.html?repo=eduardogallifaochoa/qa-automation-site&title=QA%20Automation%20Site">QA Automation Site</a>
+        <a class="pill" href="project.html?repo=eduardogallifaochoa/qa-automation-site&title=QA%20Automation%20Site" aria-label="Preview">
+          <!-- eye icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 .001-10.001A5 5 0 0 1 12 17z"/><circle cx="12" cy="12" r="2.5"/></svg>
+          Preview
+        </a>
+      </h3>
       <div class="badges">
         <span class="badge">Playwright</span><span class="badge">Pytest</span><span class="badge">CI</span>
       </div>
@@ -100,12 +115,21 @@
       <img class="thumb" loading="lazy" decoding="async"
            src="assets/qa-automation-site.png" alt="QA Automation Site"
            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
-      <p><a href="https://github.com/eduardogallifaochoa/qa-automation-site" target="_blank" rel="noopener">Repository ↗</a></p>
+      <p>
+        <a href="project.html?repo=eduardogallifaochoa/qa-automation-site&title=QA%20Automation%20Site">Preview</a>
+        · <a href="https://github.com/eduardogallifaochoa/qa-automation-site" target="_blank" rel="noopener">Repository ↗</a>
+      </p>
     </article>
 
     <!-- AI Assistant Bot -->
     <article class="card">
-      <h3><a href="project.html?repo=eduardogallifaochoa/ai-assistant-bot&title=AI%20Assistant%20Bot">AI Assistant Bot</a></h3>
+      <h3>
+        <a href="project.html?repo=eduardogallifaochoa/ai-assistant-bot&title=AI%20Assistant%20Bot">AI Assistant Bot</a>
+        <a class="pill" href="project.html?repo=eduardogallifaochoa/ai-assistant-bot&title=AI%20Assistant%20Bot" aria-label="Preview">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 .001-10.001A5 5 0 0 1 12 17z"/><circle cx="12" cy="12" r="2.5"/></svg>
+          Preview
+        </a>
+      </h3>
       <div class="badges">
         <span class="badge">Python</span><span class="badge">OpenAI</span><span class="badge">CLI</span>
       </div>
@@ -113,12 +137,21 @@
       <img class="thumb" loading="lazy" decoding="async"
            src="assets/ai-assistant-bot.png" alt="AI Assistant Bot"
            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
-      <p><a href="https://github.com/eduardogallifaochoa/ai-assistant-bot" target="_blank" rel="noopener">Repository ↗</a></p>
+      <p>
+        <a href="project.html?repo=eduardogallifaochoa/ai-assistant-bot&title=AI%20Assistant%20Bot">Preview</a>
+        · <a href="https://github.com/eduardogallifaochoa/ai-assistant-bot" target="_blank" rel="noopener">Repository ↗</a>
+      </p>
     </article>
 
     <!-- Microservice Pipeline -->
     <article class="card">
-      <h3><a href="project.html?repo=eduardogallifaochoa/microservice-deployment-pipeline&title=Microservice%20Pipeline">Microservice Pipeline</a></h3>
+      <h3>
+        <a href="project.html?repo=eduardogallifaochoa/microservice-deployment-pipeline&title=Microservice%20Pipeline">Microservice Pipeline</a>
+        <a class="pill" href="project.html?repo=eduardogallifaochoa/microservice-deployment-pipeline&title=Microservice%20Pipeline" aria-label="Preview">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 .001-10.001A5 5 0 0 1 12 17z"/><circle cx="12" cy="12" r="2.5"/></svg>
+          Preview
+        </a>
+      </h3>
       <div class="badges">
         <span class="badge">FastAPI</span><span class="badge">Docker</span><span class="badge">CI/CD</span>
       </div>
@@ -126,12 +159,21 @@
       <img class="thumb" loading="lazy" decoding="async"
            src="assets/microservice-pipeline.png" alt="Microservice Pipeline"
            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
-      <p><a href="https://github.com/eduardogallifaochoa/microservice-deployment-pipeline" target="_blank" rel="noopener">Repository ↗</a></p>
+      <p>
+        <a href="project.html?repo=eduardogallifaochoa/microservice-deployment-pipeline&title=Microservice%20Pipeline">Preview</a>
+        · <a href="https://github.com/eduardogallifaochoa/microservice-deployment-pipeline" target="_blank" rel="noopener">Repository ↗</a>
+      </p>
     </article>
 
     <!-- Price Monitoring Tool -->
     <article class="card">
-      <h3><a href="project.html?repo=eduardogallifaochoa/price_monitoring_tool&title=Price%20Monitoring%20Tool">Price Monitoring Tool</a></h3>
+      <h3>
+        <a href="project.html?repo=eduardogallifaochoa/price_monitoring_tool&title=Price%20Monitoring%20Tool">Price Monitoring Tool</a>
+        <a class="pill" href="project.html?repo=eduardogallifaochoa/price_monitoring_tool&title=Price%20Monitoring%20Tool" aria-label="Preview">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 .001-10.001A5 5 0 0 1 12 17z"/><circle cx="12" cy="12" r="2.5"/></svg>
+          Preview
+        </a>
+      </h3>
       <div class="badges">
         <span class="badge">Python</span><span class="badge">SQLite</span><span class="badge">Docker</span>
       </div>
@@ -139,12 +181,21 @@
       <img class="thumb" loading="lazy" decoding="async"
            src="assets/price_monitoring_tool.png" alt="Price Monitoring Tool"
            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
-      <p><a href="https://github.com/eduardogallifaochoa/price_monitoring_tool" target="_blank" rel="noopener">Repository ↗</a></p>
+      <p>
+        <a href="project.html?repo=eduardogallifaochoa/price_monitoring_tool&title=Price%20Monitoring%20Tool">Preview</a>
+        · <a href="https://github.com/eduardogallifaochoa/price_monitoring_tool" target="_blank" rel="noopener">Repository ↗</a>
+      </p>
     </article>
 
     <!-- AI Trading Bot -->
     <article class="card">
-      <h3><a href="project.html?repo=eduardogallifaochoa/ai-trading-bot&title=AI%20Trading%20Bot">AI Trading Bot</a></h3>
+      <h3>
+        <a href="project.html?repo=eduardogallifaochoa/ai-trading-bot&title=AI%20Trading%20Bot">AI Trading Bot</a>
+        <a class="pill" href="project.html?repo=eduardogallifaochoa/ai-trading-bot&title=AI%20Trading%20Bot" aria-label="Preview">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 .001-10.001A5 5 0 0 1 12 17z"/><circle cx="12" cy="12" r="2.5"/></svg>
+          Preview
+        </a>
+      </h3>
       <div class="badges">
         <span class="badge">Python</span><span class="badge">OpenAI</span><span class="badge">Binance</span>
       </div>
@@ -152,12 +203,21 @@
       <img class="thumb" loading="lazy" decoding="async"
            src="assets/ai-trading-bot.png" alt="AI Trading Bot"
            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
-      <p><a href="https://github.com/eduardogallifaochoa/ai-trading-bot" target="_blank" rel="noopener">Repository ↗</a></p>
+      <p>
+        <a href="project.html?repo=eduardogallifaochoa/ai-trading-bot&title=AI%20Trading%20Bot">Preview</a>
+        · <a href="https://github.com/eduardogallifaochoa/ai-trading-bot" target="_blank" rel="noopener">Repository ↗</a>
+      </p>
     </article>
 
     <!-- Analytics REST API -->
     <article class="card">
-      <h3><a href="project.html?repo=eduardogallifaochoa/analytics_rest_api&title=Analytics%20REST%20API">Analytics REST API</a></h3>
+      <h3>
+        <a href="project.html?repo=eduardogallifaochoa/analytics_rest_api&title=Analytics%20REST%20API">Analytics REST API</a>
+        <a class="pill" href="project.html?repo=eduardogallifaochoa/analytics_rest_api&title=Analytics%20REST%20API" aria-label="Preview">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 .001-10.001A5 5 0 0 1 12 17z"/><circle cx="12" cy="12" r="2.5"/></svg>
+          Preview
+        </a>
+      </h3>
       <div class="badges">
         <span class="badge">FastAPI</span><span class="badge">Pytest</span><span class="badge">CI</span>
       </div>
@@ -165,12 +225,21 @@
       <img class="thumb" loading="lazy" decoding="async"
            src="assets/analytics_rest_api.png" alt="Analytics REST API"
            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
-      <p><a href="https://github.com/eduardogallifaochoa/analytics_rest_api" target="_blank" rel="noopener">Repository ↗</a></p>
+      <p>
+        <a href="project.html?repo=eduardogallifaochoa/analytics_rest_api&title=Analytics%20REST%20API">Preview</a>
+        · <a href="https://github.com/eduardogallifaochoa/analytics_rest_api" target="_blank" rel="noopener">Repository ↗</a>
+      </p>
     </article>
 
     <!-- SauceDemo Automation -->
     <article class="card">
-      <h3><a href="project.html?repo=eduardogallifaochoa/saucedemo_automation&title=SauceDemo%20Automation">SauceDemo Automation</a></h3>
+      <h3>
+        <a href="project.html?repo=eduardogallifaochoa/saucedemo_automation&title=SauceDemo%20Automation">SauceDemo Automation</a>
+        <a class="pill" href="project.html?repo=eduardogallifaochoa/saucedemo_automation&title=SauceDemo%20Automation" aria-label="Preview">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 .001-10.001A5 5 0 0 1 12 17z"/><circle cx="12" cy="12" r="2.5"/></svg>
+          Preview
+        </a>
+      </h3>
       <div class="badges">
         <span class="badge">Python</span><span class="badge">Selenium</span><span class="badge">Pytest</span>
       </div>
@@ -178,7 +247,10 @@
       <img class="thumb" loading="lazy" decoding="async"
            src="assets/saucedemo_automation.png" alt="SauceDemo Automation"
            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%271280%27 height=%27720%27><rect width=%27100%25%27 height=%27100%25%27 fill=%27%23e5e7eb%27/><text x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%236b7280%27 font-family=%27Arial%27 font-size=%2720%27>Preview coming soon</text></svg>';">
-      <p><a href="https://github.com/eduardogallifaochoa/saucedemo_automation" target="_blank" rel="noopener">Repository ↗</a></p>
+      <p>
+        <a href="project.html?repo=eduardogallifaochoa/saucedemo_automation&title=SauceDemo%20Automation">Preview</a>
+        · <a href="https://github.com/eduardogallifaochoa/saucedemo_automation" target="_blank" rel="noopener">Repository ↗</a>
+      </p>
     </article>
   </section>
 
