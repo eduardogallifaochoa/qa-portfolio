@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Project · Viewer</title>
+  <meta name="color-scheme" content="light dark">
+  <style>
+    body { font-family: system-ui, Arial; margin: 28px; line-height: 1.55; max-width: 880px; margin-inline:auto; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    .muted { color:#666 }
+    a { color:#0366d6; text-decoration:none; }
+    @media (prefers-color-scheme: dark) {
+      body { background:#0f1117; color:#e5e7eb; }
+      a { color:#60a5fa; }
+      .muted { color:#9ca3af; }
+    }
+    h1,h2,h3 { margin: 18px 0 8px; }
+    pre, code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    pre { overflow:auto; padding:12px; border:1px solid #e5e7eb; border-radius:8px; background:#fafafa; }
+    @media (prefers-color-scheme: dark){ pre { border-color:#1f2937; background:#111827; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <a href="./">← Back</a>
+      <h1 id="title" style="margin:6px 0 0 0;"></h1>
+      <div class="muted" id="subtitle"></div>
+    </div>
+    <div id="links"></div>
+  </header>
+  <hr/>
+  <main id="content">Loading…</main>
+
+  <script>
+    const q = new URLSearchParams(location.search);
+    const repo = q.get('repo'); // user/name
+    const branch = q.get('branch') || 'main';
+    const title = q.get('title') || repo;
+    const path = q.get('path') || 'README.md';
+
+    if (!repo) {
+      document.getElementById('content').textContent = 'Missing ?repo=user/name';
+      throw new Error('repo param required');
+    }
+
+    document.getElementById('title').textContent = decodeURIComponent(title);
+    document.getElementById('subtitle').textContent = `${repo} · ${branch}`;
+    document.getElementById('links').innerHTML = `
+      <a href="https://github.com/${repo}" target="_blank" rel="noopener">GitHub ↗</a>
+    `;
+
+    // Load marked (MD renderer)
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+    script.onload = async () => {
+      try {
+        const rawUrl = `https://raw.githubusercontent.com/${repo}/${branch}/${path}`;
+        const md = await fetch(rawUrl).then(r => {
+          if (!r.ok) throw new Error('Cannot fetch '+rawUrl);
+          return r.text();
+        });
+        document.getElementById('content').innerHTML = marked.parse(md, { breaks:true });
+
+        // Fix relative links/images
+        const baseBlob = `https://github.com/${repo}/blob/${branch}/`;
+        const baseRaw  = `https://raw.githubusercontent.com/${repo}/${branch}/`;
+        document.querySelectorAll('#content a[href]').forEach(a=>{
+          const href = a.getAttribute('href');
+          if (!href.startsWith('http') && !href.startsWith('#')) {
+            a.href = baseBlob + href.replace(/^\.\//,'');
+            a.target = '_blank';
+          }
+        });
+        document.querySelectorAll('#content img[src]').forEach(img=>{
+          const src = img.getAttribute('src');
+          if (!src.startsWith('http')) {
+            img.src = baseRaw + src.replace(/^\.\//,'');
+          }
+          img.style.maxWidth = '100%';
+          img.style.borderRadius = '8px';
+        });
+      } catch (e) {
+        document.getElementById('content').textContent = 'Failed to load README: ' + e.message;
+      }
+    };
+    document.body.appendChild(script);
+  </script>
+</body>
+</html>

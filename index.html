@@ -21,7 +21,6 @@
   <meta name="theme-color" content="#0f1117">
 
   <style>
-    /* Base (light) */
     :root { --link:#0366d6; }
     * { box-sizing: border-box; }
     body { font-family: system-ui, Arial; margin: 28px; line-height: 1.45; background:#fafafa; }
@@ -37,7 +36,7 @@
     .badge { border:1px solid #ddd; border-radius:999px; padding:2px 8px; display:inline-block; margin-right:6px; }
     a { text-decoration:none; color:var(--link); }
 
-    /* Thumbnails uniformes (Paso 4 integrado) */
+    /* Thumbnails uniformes */
     img.thumb {
       width: 100%;
       aspect-ratio: 16/9;
@@ -51,7 +50,6 @@
 
     footer { margin:20px auto 0; font-size:14px; color:#666; }
 
-    /* Dark mode */
     @media (prefers-color-scheme: dark) {
       :root { --link:#60a5fa; }
       body { background:#0f1117; color:#e5e7eb; }
@@ -85,8 +83,8 @@
     <h1>
       Eddie · QA Portfolio
       <a class="navlink" href="https://github.com/eduardogallifaochoa/qa-portfolio/tree/main/docs">· Docs ↗</a>
-      <a class="navlink" href="mailto:tu.email@ejemplo.com">· Contacto</a>
-      <a class="navlink" href="docs/eddie_cv.pdf">· CV</a>
+      <a class="navlink" href="mailto:eduardogallifao@gmail.com">· Contacto</a>
+      <a class="navlink" id="cvLink" href="docs/eddie_cv.pdf" target="_blank" rel="noopener">· CV</a>
     </h1>
     <p>Manual & Automation Testing. Playwright, Selenium, Pytest, CI/CD, Performance, AI-assisted testing.</p>
   </header>
@@ -94,7 +92,7 @@
   <section class="grid">
     <!-- QA Automation Site -->
     <article class="card">
-      <h3>QA Automation Site</h3>
+      <h3><a href="project.html?repo=eduardogallifaochoa/qa-automation-site&title=QA%20Automation%20Site">QA Automation Site</a></h3>
       <div class="badges">
         <span class="badge">Playwright</span><span class="badge">Pytest</span><span class="badge">CI</span>
       </div>
@@ -107,7 +105,7 @@
 
     <!-- AI Assistant Bot -->
     <article class="card">
-      <h3>AI Assistant Bot</h3>
+      <h3><a href="project.html?repo=eduardogallifaochoa/ai-assistant-bot&title=AI%20Assistant%20Bot">AI Assistant Bot</a></h3>
       <div class="badges">
         <span class="badge">Python</span><span class="badge">OpenAI</span><span class="badge">CLI</span>
       </div>
@@ -120,7 +118,7 @@
 
     <!-- Microservice Pipeline -->
     <article class="card">
-      <h3>Microservice Pipeline</h3>
+      <h3><a href="project.html?repo=eduardogallifaochoa/microservice-deployment-pipeline&title=Microservice%20Pipeline">Microservice Pipeline</a></h3>
       <div class="badges">
         <span class="badge">FastAPI</span><span class="badge">Docker</span><span class="badge">CI/CD</span>
       </div>
@@ -133,7 +131,7 @@
 
     <!-- Price Monitoring Tool -->
     <article class="card">
-      <h3>Price Monitoring Tool</h3>
+      <h3><a href="project.html?repo=eduardogallifaochoa/price_monitoring_tool&title=Price%20Monitoring%20Tool">Price Monitoring Tool</a></h3>
       <div class="badges">
         <span class="badge">Python</span><span class="badge">SQLite</span><span class="badge">Docker</span>
       </div>
@@ -146,7 +144,7 @@
 
     <!-- AI Trading Bot -->
     <article class="card">
-      <h3>AI Trading Bot</h3>
+      <h3><a href="project.html?repo=eduardogallifaochoa/ai-trading-bot&title=AI%20Trading%20Bot">AI Trading Bot</a></h3>
       <div class="badges">
         <span class="badge">Python</span><span class="badge">OpenAI</span><span class="badge">Binance</span>
       </div>
@@ -159,7 +157,7 @@
 
     <!-- Analytics REST API -->
     <article class="card">
-      <h3>Analytics REST API</h3>
+      <h3><a href="project.html?repo=eduardogallifaochoa/analytics_rest_api&title=Analytics%20REST%20API">Analytics REST API</a></h3>
       <div class="badges">
         <span class="badge">FastAPI</span><span class="badge">Pytest</span><span class="badge">CI</span>
       </div>
@@ -172,7 +170,7 @@
 
     <!-- SauceDemo Automation -->
     <article class="card">
-      <h3>SauceDemo Automation</h3>
+      <h3><a href="project.html?repo=eduardogallifaochoa/saucedemo_automation&title=SauceDemo%20Automation">SauceDemo Automation</a></h3>
       <div class="badges">
         <span class="badge">Python</span><span class="badge">Selenium</span><span class="badge">Pytest</span>
       </div>
@@ -222,6 +220,17 @@
         lbImg.removeAttribute('src');
       }
     });
+
+    // CV fallback: si docs/eddie_cv.pdf no existe, usa assets/eddie_cv.pdf
+    (async () => {
+      const a = document.getElementById('cvLink');
+      try {
+        const r = await fetch(a.href, { method: 'HEAD', cache: 'no-store' });
+        if (!r.ok) a.href = 'assets/eddie_cv.pdf';
+      } catch {
+        a.href = 'assets/eddie_cv.pdf';
+      }
+    })();
   </script>
 </body>
 </html>
