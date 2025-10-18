@@ -8,11 +8,11 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   bump:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,15 +21,14 @@ jobs:
           submodules: recursive
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update to latest remote
+      - name: Configure git
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # Actualiza submódulos a su HEAD remoto
+      - name: Update submodules to latest remote
+        run: |
           git submodule update --init --remote --merge
-
-          # Sólo comitea si hubo cambios
           if ! git diff --quiet; then
             git add -A
             git commit -m "chore: weekly submodule bump"
@@ -37,20 +36,7 @@ jobs:
             echo "no changes"
           fi
 
-      - name: Create PR
-        id: cpr
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: bot/submodule-bump   # rama temporal
-          base: main
-          title: "chore: weekly submodule bump"
-          commit-message: "chore: weekly submodule bump"
-          body: "Automated submodule update."
-          labels: automated, dependencies
-          delete-branch: true
-
-      - name: Echo PR URL
-        if: ${{ steps.cpr.outputs['pull-request-url'] != '' }}
+      - name: Rebase onto origin/main (avoid non-FF) and push
         run: |
-          echo "Created PR: ${{ steps.cpr.outputs['pull-request-url'] }}"
+          git pull --rebase origin main || true
+          git push origin HEAD:main
