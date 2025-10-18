@@ -2,12 +2,13 @@ name: Weekly submodule bump
 
 on:
   schedule:
-    # NOTE: GitHub cron is UTC. 09:00 America/Monterrey ≈ 15:00 UTC (adjust DST if needed).
+    # GitHub cron es UTC. 09:00 America/Monterrey ≈ 15:00 UTC (ajusta DST si aplica).
     - cron: "0 15 * * 1"
   workflow_dispatch:
 
 permissions:
-  contents: write  # allow GITHUB_TOKEN to push
+  contents: write        # permite commits
+  pull-requests: write   # permite abrir PRs
 
 jobs:
   bump:
@@ -16,21 +17,39 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0               # full history helps with submodules
+          fetch-depth: 0
           submodules: recursive
-          token: ${{ secrets.GITHUB_TOKEN }}  # use the RW token
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update to latest remote
         run: |
-          git config user.name "Eddie Bot"             # set committer
-          git config user.email "actions@github"       # set committer email
-          git submodule update --init --remote --merge # bump submodules
-          git add .
-          git commit -m "chore: weekly submodule bump" || echo "no changes"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+          # Actualiza submódulos a su HEAD remoto
+          git submodule update --init --remote --merge
+
+          # Sólo comitea si hubo cambios reales
+          if ! git diff --quiet; then
+            git add -A
+            git commit -m "chore: weekly submodule bump"
+          else
+            echo "no changes"
+          fi
+
+      - name: Create PR
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-          force: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: bot/submodule-bump              # rama temporal
+          base: main
+          title: "chore: weekly submodule bump"
+          commit-message: "chore: weekly submodule bump"
+          body: "Automated submodule update."
+          labels: automated, dependencies
+          delete-branch: true
+
+      - name: Echo PR URL
+        if: steps.cpr.outputs.pull-request-url != ''
+        run: echo "Created PR: ${{ steps.cpr.outputs.pull-request-url }}"
