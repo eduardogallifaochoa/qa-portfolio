@@ -1,21 +1,36 @@
 name: Weekly submodule bump
+
 on:
   schedule:
-    - cron: "0 9 * * 1"   # lunes 09:00 America/Monterrey aprox
+    # NOTE: GitHub cron is UTC. 09:00 America/Monterrey ≈ 15:00 UTC (adjust DST if needed).
+    - cron: "0 15 * * 1"
   workflow_dispatch:
+
+permissions:
+  contents: write  # allow GITHUB_TOKEN to push
+
 jobs:
   bump:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
+          fetch-depth: 0               # full history helps with submodules
           submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}  # use the RW token
+
       - name: Update to latest remote
         run: |
-          git submodule update --init --remote --merge
+          git config user.name "Eddie Bot"             # set committer
+          git config user.email "actions@github"       # set committer email
+          git submodule update --init --remote --merge # bump submodules
           git add .
-          git -c user.name="Eddie Bot" -c user.email="actions@github" commit -m "chore: bump submodules" || echo "no changes"
-      - uses: ad-m/github-push-action@master
+          git commit -m "chore: weekly submodule bump" || echo "no changes"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
+          force: false
