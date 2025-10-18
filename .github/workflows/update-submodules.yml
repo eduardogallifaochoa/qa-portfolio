@@ -2,13 +2,13 @@ name: Weekly submodule bump
 
 on:
   schedule:
-    # GitHub cron es UTC. 09:00 America/Monterrey ≈ 15:00 UTC (ajusta DST si aplica).
+    # 09:00 America/Monterrey ≈ 15:00 UTC (ajusta DST si aplica)
     - cron: "0 15 * * 1"
   workflow_dispatch:
 
 permissions:
-  contents: write        # permite commits
-  pull-requests: write   # permite abrir PRs
+  contents: write
+  pull-requests: write
 
 jobs:
   bump:
@@ -29,7 +29,7 @@ jobs:
           # Actualiza submódulos a su HEAD remoto
           git submodule update --init --remote --merge
 
-          # Sólo comitea si hubo cambios reales
+          # Sólo comitea si hubo cambios
           if ! git diff --quiet; then
             git add -A
             git commit -m "chore: weekly submodule bump"
@@ -42,7 +42,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: bot/submodule-bump              # rama temporal
+          branch: bot/submodule-bump   # rama temporal
           base: main
           title: "chore: weekly submodule bump"
           commit-message: "chore: weekly submodule bump"
@@ -51,5 +51,6 @@ jobs:
           delete-branch: true
 
       - name: Echo PR URL
-        if: steps.cpr.outputs.pull-request-url != ''
-        run: echo "Created PR: ${{ steps.cpr.outputs.pull-request-url }}"
+        if: ${{ steps.cpr.outputs['pull-request-url'] != '' }}
+        run: |
+          echo "Created PR: ${{ steps.cpr.outputs['pull-request-url'] }}"
