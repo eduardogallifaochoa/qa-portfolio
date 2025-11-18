@@ -1,6 +1,6 @@
 # QA Portfolio · Eduardo Gallifa
 
-Hi, I’m Eddie. Manual & Automation Testing for Web, API, and Mobile. This repo is a curated showcase of my QA projects: Playwright, Selenium, Pytest, CI/CD, Performance, and AI-assisted testing.
+Hi, I’m Eduardo GAllifa. Manual & Automation Testing for Web, API, and Mobile. This repo is a curated showcase of my QA projects: Playwright, Selenium, Pytest, CI/CD, Performance, and AI-assisted testing.
 
 ## Projects
 
