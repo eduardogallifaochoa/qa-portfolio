@@ -3,7 +3,7 @@ File: docs/eddie_cv.md
 Export to PDF and upload as docs/eddie_cv.pdf
 -->
 
-# **Eduardo Gallifa Ochoa** — QA Engineer
+# **Eduardo Gallifa** — QA Engineer
 Manual & Automation Testing · Playwright · Selenium · Pytest · CI/CD · Performance · AI-assisted testing
 
 **Location:** Ciudad Madero, Tamaulipas, Mexico · **Phone:** +52 833 121 0691  

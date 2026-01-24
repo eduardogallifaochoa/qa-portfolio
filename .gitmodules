@@ -19,3 +19,11 @@
 [submodule "projects/saucedemo_automation"]
 	path = projects/saucedemo_automation
 	url = https://github.com/eduardogallifaochoa/saucedemo_automation.git
+
+[submodule "projects/automationteststore"]
+	path = projects/automationteststore
+	url = https://github.com/eduardogallifaochoa/automationteststore.git
+
+[submodule "projects/petstore-api-playwright"]
+	path = projects/petstore-api-playwright
+	url = https://github.com/eduardogallifaochoa/petstore-api-playwright.git
