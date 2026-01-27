@@ -1,58 +1,52 @@
-# Eduardo Gallifa  
-**Jr QA Automation Engineer**  
+## Eduardo Gallifa
+**Quality Assurance Engineer (Manual + Automation)**  
+Remote (Mexico, CST / UTC-6)
 
-Remote (Mexico, CST – UTC‑6)  
-📧 eduardogallifao@gmail.com  
-💼 LinkedIn: https://linkedin.com/in/eduardogallifaochoa  
-🐙 GitHub: https://github.com/eduardogallifaochoa  
-🌐 Portfolio: https://eduardogallifaochoa.github.io/qa-portfolio  
+Email: eduardogallifo@gmail.com  
+LinkedIn: https://linkedin.com/in/eduardogallifaochoa  
+GitHub: https://github.com/eduardogallifaochoa  
+Portfolio: https://eduardogallifaochoa.github.io/qa-portfolio  
 
 ## Professional Summary
-Junior QA Automation Engineer with hands‑on experience in web and mobile testing, and an automation portfolio using **Python, JavaScript, TypeScript, and Playwright**. Strong foundation in functional and regression testing, defect tracking in **Jira**, and end‑to‑end validation of fixes in collaboration with developers. Comfortable working in remote, Agile‑style environments and adaptable to different teams and workflows.
+QA Engineer with 1+ year of experience testing web and mobile apps in remote Agile teams. Strong in functional, regression, and exploratory testing; Jira defect lifecycle; and end-to-end validation of fixes. Built Playwright automation (Python/JavaScript) and API checks with CI and HTML reports.
 
-## Skills
-**Testing**
-- Functional, Regression, Exploratory, Smoke  
-- Test cases, checklists, test evidence, defect lifecycle  
-
-**Automation**
-- Python, Playwright  
-- JavaScript, TypeScript  
-
-**Tools**
-- Jira, Git/GitHub, Postman  
-- DevTools, Charles Proxy  
-- Android Studio, 3uTools  
-
-**Methodologies**
-- Agile, Scrum, Kanban  
-- Daily stand‑up meetings  
+## Core Skills
+**Testing:** Functional, Regression, Exploratory, Smoke; test cases, checklists, test plans, test evidence  
+**Tools:** Jira, Postman, DevTools, Git/GitHub, Android Studio, 3uTools, Charles Proxy  
+**Automation:** Playwright (Python/JavaScript), Pytest, POM basics, GitHub Actions CI  
+**Technical:** APIs, HTTP methods/status codes, HTML/CSS/JavaScript  
 
 ## Experience
-### Manual QA
-- Executed functional and regression testing for web and mobile training apps; validated core user flows and negative scenarios.  
-- Designed and executed test cases and checklists; documented defects in Jira following ISTQB foundations with clear steps, expected/actual results, and evidence (screenshots, logs, recordings).  
-- Retested fixes, performed smoke checks, and supported release readiness with structured test summaries.  
-- Used DevTools and mobile tooling (Charles Proxy, Android Studio, 3uTools) to troubleshoot issues and capture artifacts.  
+**Manual QA Intern · a1qa** (Jan 2025 – Jul 2025)  
+- Developed and executed test cases and checklists for web and mobile features, covering positive, negative, and boundary scenarios (ISTQB-aligned).
+- Ran regression and exploratory sessions each sprint to verify requirements, investigate edge cases, and expand coverage.
+- Reported defects in Jira with clear steps, expected/actual results, environment details, and evidence (screenshots/recordings); re-tested fixes and performed smoke checks.
+- Used DevTools and Charles Proxy to inspect requests, reproduce issues, and capture logs/recordings when needed.
 
-### Logistics Supervisor
-- Coordinated daily logistics operations and delivery routes, ensuring on‑time execution and clear stakeholder communication.  
-- Tracked KPIs in Excel and improved reporting cadence for operational visibility and decision‑making.  
+**Logistics Supervisor · AGE Energy** (2022 – 2023)  
+- Coordinated daily logistics operations and delivery routes, ensuring on-time execution and clear stakeholder communication.
+- Tracked KPIs in Excel and improved reporting cadence for better operational visibility and decision-making.
 
 ## Automation Projects
-### QA Site (Playwright + Pytest + FastAPI)
-- Built automated UI tests for login and contact forms, covering positive, negative, and boundary scenarios; cross‑browser.  
-- Implemented API tests and a basic CI workflow in GitHub Actions; generated test reports for quick review.  
+**QA Automation Site (Playwright + Pytest + FastAPI)**  
+- Automated UI tests for login and contact form, covering positive, negative, and boundary scenarios (cross-browser).
+- Added API checks and GitHub Actions CI; generated HTML test reports.
 
-### Automation Test Store (Playwright + JavaScript/TypeScript)
-- Built automated workflows ensuring usability, maintainability, and scalability.  
-- Implemented Page Object Models (POM) and centralized test data management.  
+**Automation Test Store (Playwright + JavaScript/TypeScript)**  
+- Automated user-flow scenarios with stable selectors and reusable helpers.
+- Implemented Page Object Models and centralized test data to keep the suite maintainable and scalable.
+- Used fixtures to reuse methods without repeating setup in each test.
+
+**Pet API Automation Store (Playwright + JavaScript/TypeScript)**  
+- Automated GET/POST/PUT/DELETE requests.
+- Added edge cases to validate behavior for invalid data and routes.
+- Refactored to use dynamic data, avoiding fixed IDs and dependency on public API state.
+- Improved structure and clarity based on mentor feedback (host/endpoint variables and clear comments).
 
 ## Education & Certifications
-- B.S. Systems Engineer  
-- EPAM Cloud & Automation Tools Fundamentals  
-- Cambridge English Certificate – B2/C1  
+- B.S. Systems Engineer
+- EPAM: Cloud & Automation Tools Fundamentals
+- Cambridge English Certificate (B2/C1)
 
 ## Languages
-- Spanish: Native  
-- English: B2/C1  
+Spanish (Native) · English (B2/C1)
