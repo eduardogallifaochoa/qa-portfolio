@@ -53,6 +53,11 @@ QA Engineer with experience on testing web and mobile applications in remote Agi
 - Added edge cases for invalid data and routes.
 - Refactored tests to use dynamic data and avoid fixed IDs.
 
+### DevOps Kubernetes AWS Showcase (FastAPI + Docker + Kubernetes)
+- Built a production-like stack with DEV/QA environments using Docker Compose and kind Kubernetes.
+- Added GitHub Actions CI/CD workflows with GHCR image publishing and environment-based deployment flow.
+- Documented an AWS deployment roadmap and teardown steps for safe, low-cost demos.
+
 ---
 
 ## Education & Certifications
