@@ -27,3 +27,6 @@
 [submodule "projects/petstore-api-playwright"]
 	path = projects/petstore-api-playwright
 	url = https://github.com/eduardogallifaochoa/petstore-api-playwright.git
+[submodule "projects/devops-kubernetes-aws-showcase"]
+	path = projects/devops-kubernetes-aws-showcase
+	url = https://github.com/eduardogallifaochoa/devops-kubernetes-aws-showcase.git
