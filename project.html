@@ -5,19 +5,70 @@
   <meta name="viewport" content="width=device-width" />
   <title>Project · Preview</title>
   <meta name="color-scheme" content="light dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --link:#0366d6; --border:#e5e7eb; --bg:#fff; --fg:#111827; --muted:#6b7280; }
-    * { box-sizing:border-box; }
-    body { font-family: system-ui, Arial; margin: 24px; line-height:1.55; background:#fafafa; color:var(--fg); }
+    :root {
+      --accent: #06b6d4;
+      --link: #0891b2;
+      --border: #e2e8f0;
+      --card-bg: #fff;
+      --body-bg: #f8fafc;
+      --fg: #0f172a;
+      --muted: #64748b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, Arial;
+      margin: 24px; line-height: 1.6;
+      background: var(--body-bg); color: var(--fg);
+    }
     header, main { max-width: 980px; margin: 0 auto; }
-    header { display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom: 14px; }
-    h1 { margin:0; font-size: 22px; }
-    nav a { color: var(--link); text-decoration: none; margin-left: 8px; }
-    .muted { color:var(--muted); font-size:14px; }
-    .card { border:1px solid var(--border); border-radius:14px; padding:18px; background:var(--bg); }
-    pre { overflow:auto; background:#0f172a; color:#e5e7eb; padding:14px; border-radius:10px; }
-    img { max-width: 100%; height: auto; }
-    @media (prefers-color-scheme: dark) { :root { --link:#60a5fa; --border:#1f2937; --bg:#111827; --fg:#e5e7eb; --muted:#9ca3af; } body { background:#0f1117; } }
+    header {
+      display: flex; align-items: baseline;
+      justify-content: space-between; gap: 12px;
+      flex-wrap: wrap; margin-bottom: 16px;
+    }
+    h1 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -.3px; }
+    a { color: var(--link); text-decoration: none; transition: color .15s; }
+    a:hover { color: var(--accent); }
+    nav a { margin-left: 8px; font-weight: 500; }
+    .muted { color: var(--muted); font-size: 13px; }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px 28px;
+      background: var(--card-bg);
+    }
+    /* README content styles */
+    #content img { max-width: 100%; height: auto; border-radius: 8px; }
+    #content pre {
+      overflow: auto; background: #0f172a; color: #e2e8f0;
+      padding: 16px; border-radius: 10px; font-size: 13.5px;
+    }
+    #content code:not(pre code) {
+      background: #f1f5f9; color: #0f172a;
+      padding: 2px 6px; border-radius: 5px; font-size: 13px;
+    }
+    #content h1, #content h2, #content h3 { letter-spacing: -.2px; }
+    #content a { color: var(--link); }
+    #content a:hover { color: var(--accent); }
+    #content table { border-collapse: collapse; width: 100%; font-size: 14px; }
+    #content th, #content td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
+    #content th { background: #f8fafc; font-weight: 600; }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --accent: #22d3ee;
+        --link: #22d3ee;
+        --border: #1e293b;
+        --card-bg: #111827;
+        --body-bg: #0f1117;
+        --fg: #e2e8f0;
+        --muted: #94a3b8;
+      }
+      #content code:not(pre code) { background: #1e293b; color: #e2e8f0; }
+      #content th { background: #0f172a; }
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
@@ -26,7 +77,7 @@
   <header>
     <div>
       <a href="#" id="backLink" aria-label="Back">← Back</a>
-      <h1 id="title" style="display:inline-block; margin-left:8px;">Project Preview</h1>
+      <h1 id="title" style="display:inline-block; margin-left:10px;">Project Preview</h1>
       <span id="repoMeta" class="muted" style="margin-left:8px;"></span>
     </div>
     <nav><a id="openOnGitHub" href="#" target="_blank" rel="noopener">GitHub ↗</a></nav>
@@ -42,10 +93,9 @@
 
     const $ = (s) => document.querySelector(s);
     $('#title').textContent = niceTitle;
-    $('#repoMeta').textContent = repo ? `${repo}` : '';
+    $('#repoMeta').textContent = repo ? repo : '';
     $('#openOnGitHub').href = repo ? `https://github.com/${repo}` : '#';
 
-    // Back link
     $('#backLink').addEventListener('click', (e) => {
       e.preventDefault();
       if (returnParam) { location.href = returnParam; return; }
@@ -59,22 +109,21 @@
     if (!repo) { $('#content').textContent = 'Missing ?repo=:owner/:name'; throw new Error('Missing repo'); }
 
     async function getDefaultBranch(ownerRepo) {
-      const api = `https://api.github.com/repos/${ownerRepo}`;
-      const r = await fetch(api, { headers: { 'Accept': 'application/vnd.github+json' }});
+      const r = await fetch(`https://api.github.com/repos/${ownerRepo}`, { headers: { 'Accept': 'application/vnd.github+json' } });
       if (!r.ok) throw new Error(`GitHub API error: ${r.status}`);
-      const j = await r.json();
-      return j.default_branch || 'main';
+      return (await r.json()).default_branch || 'main';
     }
     async function fetchFirstOK(urls) {
-      for (const u of urls) { try { const r = await fetch(u, { cache: 'no-store' }); if (r.ok) return await r.text(); } catch {} }
+      for (const u of urls) {
+        try { const r = await fetch(u, { cache: 'no-store' }); if (r.ok) return await r.text(); } catch {}
+      }
       throw new Error('All candidates failed');
     }
     function absolutizeLinks(container, baseRaw, baseBlob) {
       container.querySelectorAll('img').forEach(img => {
         const src = img.getAttribute('src') || '';
-        if (!/^https?:\/\//i.test(src) && !src.startsWith('data:') && !src.startsWith('#')) {
+        if (!/^https?:\/\//i.test(src) && !src.startsWith('data:') && !src.startsWith('#'))
           img.src = baseRaw + src.replace(/^\.\//, '');
-        }
       });
       container.querySelectorAll('a').forEach(a => {
         const href = a.getAttribute('href') || '';
@@ -88,17 +137,20 @@
       const html = DOMPurify.sanitize(marked.parse(md));
       const el = document.createElement('div'); el.innerHTML = html;
       absolutizeLinks(el, baseRaw, baseBlob);
-      $('#content').innerHTML = ''; $('#content').appendChild(el);
-      const span = document.createElement('span'); span.className = 'muted'; span.style.marginLeft = '8px'; span.textContent = `· branch: ${branch}`;
+      $('#content').innerHTML = '';
+      $('#content').appendChild(el);
+      const span = document.createElement('span');
+      span.className = 'muted'; span.style.marginLeft = '8px';
+      span.textContent = `· branch: ${branch}`;
       $('#repoMeta').appendChild(span);
     }
 
     (async () => {
       const fallbackBranches = ['main', 'master', 'dev', 'gh-pages'];
-      let branchFromAPI = null; try { branchFromAPI = await getDefaultBranch(repo); } catch {}
+      let branchFromAPI = null;
+      try { branchFromAPI = await getDefaultBranch(repo); } catch {}
       const branches = branchFromAPI ? [branchFromAPI, ...fallbackBranches.filter(b => b !== branchFromAPI)] : fallbackBranches;
-      const filenames = ['README.md','readme.md','README.MD','README.rst','docs/README.md','Readme.md','README.txt'];
-
+      const filenames = ['README.md', 'readme.md', 'README.MD', 'README.rst', 'docs/README.md', 'Readme.md', 'README.txt'];
       for (const b of branches) {
         const baseRaw  = `https://raw.githubusercontent.com/${repo}/${b}/`;
         const baseBlob = `https://github.com/${repo}/blob/${b}/`;
