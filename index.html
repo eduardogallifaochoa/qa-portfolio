@@ -251,7 +251,7 @@
     <h1>
       Eduardo Gallifa · QA Portfolio
       <a class="navlink" href="https://github.com/eduardogallifaochoa/qa-portfolio/tree/main/docs">· Docs ↗</a>
-      <a class="navlink" id="cvLink" href="docs/Eduardo_Gallifa.pdf" target="_blank" rel="noopener">· CV</a>
+      <a class="navlink" id="cvLink" href="assets/Eduardo_Gallifa.pdf" target="_blank" rel="noopener">· CV</a>
     </h1>
     <p style="color:var(--muted);font-size:14px;">Manual &amp; Automation Testing · Playwright · Pytest · CI/CD · Performance</p>
 
@@ -259,17 +259,16 @@
     <section class="hero">
       <span class="status-badge"><span class="status-dot"></span>Open to work</span>
       <p id="pitch">
-Hello, I hope everything is well.
+I'm a QA Engineer who builds with AI.
 
-I'm Eduardo Gallifa, QA Engineer with experience in manual and automated testing.
-JavaScript, Python, Playwright, Pytest, CI/CD, and performance testing.
-This is my portfolio of projects showcasing my expertise.
+Now more than ever, having QA from day one in the SDLC is the difference between shipping clean… or shipping broken.
 
-Kind regards,
-Eduardo Gallifa.
+That eye for detail and end-user instinct doesn't go away when you hand things to an AI agent. It gets more valuable.
+
+I use Playwright (JS/TS and Python), CI/CD pipelines, Ubuntu, and whatever tool makes sense for the job. But my real edge is knowing what to ask, what to question, and when the output is wrong — even when it looks right.
       </p>
       <div class="cta">
-        <a class="btn" id="heroCvLink" href="docs/Eduardo_Gallifa.pdf" target="_blank" rel="noopener">Download CV</a>
+        <a class="btn" id="heroCvLink" href="assets/Eduardo_Gallifa.pdf" target="_blank" rel="noopener">Download CV</a>
         <a class="btn outline" href="contact.html">Contact</a>
       </div>
     </section>
@@ -501,8 +500,8 @@ Eduardo Gallifa.
       for (const a of anchors) {
         try {
           const r = await fetch(a.href, { method: 'HEAD', cache: 'no-store' });
-          if (!r.ok) a.href = 'assets/eduardo_gallifa.pdf';
-        } catch { a.href = 'assets/eduardo_gallifa.pdf'; }
+          if (!r.ok) a.href = 'assets/Eduardo_Gallifa.pdf';
+        } catch { a.href = 'assets/Eduardo_Gallifa.pdf'; }
       }
     })();
 
