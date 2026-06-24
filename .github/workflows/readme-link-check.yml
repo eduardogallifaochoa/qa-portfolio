@@ -1,7 +1,7 @@
 name: README link check
 on:
   push:
-    paths: ["README.md","index.html","docs/**"]
+    paths: ["README.md","index.html","contact.html","project.html","docs/**"]
   workflow_dispatch:
 jobs:
   check:
@@ -10,4 +10,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: lycheeverse/lychee-action@v1
         with:
-          args: --verbose --no-progress README.md index.html docs
+          args: --verbose --no-progress README.md index.html contact.html project.html docs
