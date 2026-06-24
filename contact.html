@@ -90,7 +90,7 @@
     </div>
     <div class="row">
       <strong>CV</strong>
-      <a href="docs/eddie_cv.pdf" id="cv" target="_blank" rel="noopener">Open CV ↗</a>
+      <a href="assets/Eduardo_Gallifa.pdf" id="cv" target="_blank" rel="noopener">Open CV ↗</a>
     </div>
     <div class="row">
       <strong>Location</strong>
@@ -132,8 +132,8 @@
       const a = document.getElementById('cv');
       try {
         const r = await fetch(a.href, { method: 'HEAD', cache: 'no-store' });
-        if (!r.ok) a.href = 'assets/eddie_cv.pdf';
-      } catch { a.href = 'assets/eddie_cv.pdf'; }
+        if (!r.ok) a.href = 'docs/Eduardo_Gallifa.pdf';
+      } catch { a.href = 'docs/Eduardo_Gallifa.pdf'; }
     })();
   </script>
 </body>
