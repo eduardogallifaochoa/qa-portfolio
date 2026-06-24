@@ -51,6 +51,7 @@ Project screenshots and visuals live in the `assets/` folder and are used in the
 - Email: eduardogallifao@gmail.com  
 - LinkedIn: https://www.linkedin.com/in/eduardogallifaochoa/  
 - GitHub: https://github.com/eduardogallifaochoa  
+- YouTube: https://www.youtube.com/@eduardogallifa  
 - Portfolio: https://eduardogallifaochoa.github.io/qa-portfolio/
 
 ---
