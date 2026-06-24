@@ -18,7 +18,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="assets/site.webmanifest">
-  <meta name="theme-color" content="#0f1117">
+  <meta name="theme-color" content="#141611">
 
   <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,15 +27,15 @@
 
   <style>
     :root {
-      --accent: #06b6d4;
-      --accent-glow: rgba(6,182,212,.14);
-      --link: #0891b2;
-      --border: #e2e8f0;
-      --pill-bg: #f0fdff;
-      --muted: #64748b;
-      --card-bg: #fff;
-      --body-bg: #f8fafc;
-      --heading: #0f172a;
+      --accent: #6b9080;
+      --accent-glow: rgba(107,144,128,.14);
+      --link: #4f7a64;
+      --border: #e7e2d8;
+      --pill-bg: #f1f4ef;
+      --muted: #7a7468;
+      --card-bg: #fffefb;
+      --body-bg: #f7f4ee;
+      --heading: #2e3a33;
     }
 
     * { box-sizing: border-box; }
@@ -63,19 +63,22 @@
     /* Open-to-work badge */
     .status-badge {
       display: inline-flex; align-items: center; gap: 6px;
-      background: #dcfce7; color: #166534;
+      background: #e3ede4; color: #3f6b50;
       border-radius: 999px; padding: 3px 10px;
       font-size: 12px; font-weight: 600;
       width: fit-content;
     }
     .status-dot {
       width: 7px; height: 7px;
-      background: #22c55e; border-radius: 50%;
-      animation: blink 2s ease-in-out infinite;
+      background: #4f9a72; border-radius: 50%;
+      animation: breathe 3.6s ease-in-out infinite;
     }
-    @keyframes blink {
+    @keyframes breathe {
       0%, 100% { opacity: 1; }
-      50% { opacity: .25; }
+      50% { opacity: .55; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .status-dot { animation: none; }
     }
 
     /* Hero */
@@ -90,9 +93,9 @@
     .hero::before {
       content: '';
       position: absolute; inset: 0;
-      background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+      background-image: radial-gradient(circle, #d8d0c0 1px, transparent 1px);
       background-size: 22px 22px;
-      opacity: .45;
+      opacity: .4;
       pointer-events: none;
     }
     .hero > * { position: relative; }
@@ -102,12 +105,12 @@
     .btn {
       padding: 8px 16px; border-radius: 10px;
       border: 1px solid transparent;
-      background: #0f172a; color: #fff;
+      background: #3d4a40; color: #fffefb;
       font-family: inherit; font-size: 14px; font-weight: 500;
       cursor: pointer;
       transition: background .15s, transform .12s, box-shadow .15s;
     }
-    .btn:hover { background: #1e293b; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.15); color: #fff; }
+    .btn:hover { background: #2e3a33; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(46,58,51,.18); color: #fffefb; }
     .btn.outline {
       background: transparent;
       border-color: var(--accent);
@@ -142,7 +145,7 @@
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 14px 36px var(--accent-glow);
-      border-color: rgba(6,182,212,.35);
+      border-color: rgba(107,144,128,.4);
     }
     .card h3 {
       margin: 0 0 8px; font-size: 16px; font-weight: 600;
@@ -163,8 +166,8 @@
     .b-javascript  { background: #d97706; }
     .b-pytest      { background: #7c3aed; }
     .b-ci          { background: #475569; }
-    .b-e2e         { background: #0891b2; }
-    .b-api         { background: #0891b2; }
+    .b-e2e         { background: #5f8d83; }
+    .b-api         { background: #5f8d83; }
     .b-fastapi     { background: #059669; }
     .b-docker      { background: #0284c7; }
     .b-kubernetes  { background: #6366f1; }
@@ -186,7 +189,7 @@
     img.thumb {
       width: 100%; aspect-ratio: 16/9; height: auto;
       object-fit: cover; object-position: center;
-      border-radius: 10px; background: #f1f5f9;
+      border-radius: 10px; background: #efeae0;
       cursor: zoom-in;
       transition: opacity .2s, transform .2s;
     }
@@ -200,27 +203,27 @@
     /* ── Dark mode ── */
     @media (prefers-color-scheme: dark) {
       :root {
-        --accent: #22d3ee;
-        --accent-glow: rgba(34,211,238,.12);
-        --link: #22d3ee;
-        --border: #1e293b;
-        --pill-bg: #0c1929;
-        --muted: #94a3b8;
-        --card-bg: #111827;
-        --body-bg: #0f1117;
-        --heading: #f1f5f9;
+        --accent: #8fb8a0;
+        --accent-glow: rgba(143,184,160,.12);
+        --link: #8fb8a0;
+        --border: #2b2f29;
+        --pill-bg: #1a201c;
+        --muted: #9c968a;
+        --card-bg: #1a1d18;
+        --body-bg: #141611;
+        --heading: #e8e4da;
       }
       body { color: var(--heading); }
       .hero::before {
-        background-image: radial-gradient(circle, #1e293b 1px, transparent 1px);
+        background-image: radial-gradient(circle, #2b2f29 1px, transparent 1px);
         opacity: 1;
       }
       .card { box-shadow: none; }
-      .card:hover { box-shadow: 0 14px 40px rgba(34,211,238,.08); }
-      .btn { background: #1e293b; border-color: #334155; }
-      .btn:hover { background: #334155; }
-      .status-badge { background: #14532d; color: #86efac; }
-      img.thumb { background: #0b0f1a; }
+      .card:hover { box-shadow: 0 14px 40px rgba(143,184,160,.08); }
+      .btn { background: #2b332c; border-color: #3a443a; }
+      .btn:hover { background: #3a443a; }
+      .status-badge { background: #25372b; color: #9ecfae; }
+      img.thumb { background: #11140f; }
       .b-javascript { background: #b45309; }
     }
 
